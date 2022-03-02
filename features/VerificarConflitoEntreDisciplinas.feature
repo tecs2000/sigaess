@@ -9,7 +9,7 @@ And, logo em seguida, tento adicionar a cadeira de "Estatística", com horário 
 Then eu vejo que a cadeira “Estatística” foi adicionada com sucesso
 And continuo na tela de “Matrícula”
 
-		
+	
 Scenario: Conflito entre horários durante a matrícula 
 		
 Given que estou na tela de “Matrícula”

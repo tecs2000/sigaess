@@ -1,4 +1,5 @@
 
+GUI Scenarios
 Scenario: Fazer login com credenciais de aluno 
 Given Estou na página de autenticação de usuários
 And Existe um CPF “12345678900” vinculado a um aluno
@@ -27,22 +28,3 @@ And Adiciono o CPF “11171115474” e demais dados solicitados
 Then Continuo na tela de autenticação de usuários
 And Vejo uma mensagem de confirmação do cadastro
 
-Scenario: Falha ao cadastrar novo usuário
-Given Estou na página de autenticação de usuários
-And Já existe um usuário cadastrado com o CPF “11171115474”
-When Clico na opção de Cadastrar Usuários
-And Adiciono o CPF “11171115474” e demais dados solicitados
-Then Ainda estou na tela de autenticação de usuários
-And Vejo uma mensagem de erro de CPF já cadastrado
-
-
-Scenario: Tentar fazer login com credenciais inválidas
-Given Não há nenhum CPF “12345678900” cadastrado no sistema
-When Tento logar com o CPF “12345678900” e a senha “123”
-Then O sistema não reconhece as credenciais
-And O sistema levanta a mensagem de erro de Credenciais inválidas
-
-Scenario: Cadastrar novo usuário
-Given Não há nenhum CPF “12345678900” cadastrado no sistema
-When Tento cadastrar um novo usuário com o CPF “12345678900”
-Then O sistema possui um usuário cadastrado com o CPF “12345678900”

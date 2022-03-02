@@ -28,3 +28,10 @@ And Adiciono o CPF “11171115474” e demais dados solicitados
 Then Continuo na tela de autenticação de usuários
 And Vejo uma mensagem de confirmação do cadastro
 
+Scenario: Falha ao cadastrar novo usuário
+Given Estou na página de autenticação de usuários
+And Já existe um usuário cadastrado com o CPF “11171115474”
+When Clico na opção de Cadastrar Usuários
+And Adiciono o CPF “11171115474” e demais dados solicitados
+Then Ainda estou na tela de autenticação de usuários
+And Vejo uma mensagem de erro de CPF já cadastrado

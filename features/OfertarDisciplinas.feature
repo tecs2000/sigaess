@@ -120,7 +120,7 @@ System Scenarios
         And A disciplina "Matemática Discreta" possui quantidade de "alunos_matriculados"
         When O sistema tenta modificar "numero_vagas" para exatamente a quantidade de "alunos_matriculados"
         Then O sistema atualiza as informações da disciplina
-        And Alunso não podem mais se matricular na disciplina já que está lotada
+        And Alunso não podem mais se matricular na disciplina "Matemática Discreta" já que está lotada
 
     Scenario: Modifico o número de vagas de uma disciplina para algo maior quando a quantidade de alunos máxima é alcançada
         Given Já existe uma disciplina com "nome_disciplina" "Matemática Discreta"

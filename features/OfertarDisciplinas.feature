@@ -53,7 +53,7 @@ GUI Scenarios
         Given Eu estou logado no sistema como um professor
         And Eu estou na página "Minhas Disciplinas"
         And Eu vejo apenas as disciplinas "Matemática Discreta" e "Lógica para programação"
-        And a disciplina "Matemática Discreta" possui "10" alunos matriculados
+        And A disciplina "Matemática Discreta" possui "10" alunos matriculados
         When Eu clico para modificar a disciplina "Matemática Discreta"
         And Eu coloco o "numero_vagas" como "11"
         And Eu clico que confirmar
@@ -92,13 +92,13 @@ System Scenarios
         Given Já existe no sistema uma disciplina com "nome_disciplina" "Matemática Discireta"
         When Tento cadastrar uma dsiciplina uma nova disciplina com "nome_disciplina" "Matemática Discireta"
         Then O sistema levanta mensagem de erro de chave "nome_disciplina" repetida
-        And a disciplina não é cadastrada no sistema
+        And A disciplina não é cadastrada no sistema
     
     Scenario: Cadastro de disciplina com "nome_disciplina" inválido
         Given Não existe no sistema uma disciplina com "nome_disciplina" "Matemática Discireta"
         When Tento cadastrar uma dsiciplina uma nova disciplina com "nome_disciplina" ""
         Then O sistema levanta mensagem de erro de chave "nome_disciplina" inválido
-        And a disciplina não é cadastrada no sistema
+        And A disciplina não é cadastrada no sistema
 
     Scenario: Tento modificar o número de vagas de uma disciplina para algo menor que o número de alunos matriculados
         Given Já existe uma disciplina com "nome_disciplina" "Matemática Discreta"

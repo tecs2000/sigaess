@@ -28,3 +28,8 @@ Scenario: Cadastro de disciplinas para a mesma turma
     When: Eu tento cadastrar uma nova disciplina chamada "Algoritmos", com horário "terça 10-12 e quinta 8-10" e turma "18-A"
     Then: A disciplina de nome "Algoritmos" é corretamente armazenada e o sistema possui duas disciplinas com o mesma turma
     And: Eu vejo uma mensagem de sucesso
+
+Scenario: Outro cenário de teste
+    Given: Estou no Vscode
+    When: Eu tento criar uma nova feature 
+    Then: Eu consigo e vejo uma mensagem de sucesso

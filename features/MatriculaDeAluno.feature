@@ -1,5 +1,5 @@
-as a student 
-i quero adicionar matérias à minha grade 
+as um estudante
+i quero adicionar matérias à minha grade de horário
 to eu faça a matrícula na minha instituição de ensino
 
 Scenario: Aluno Acessa a Área de Matrícula

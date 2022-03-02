@@ -27,3 +27,10 @@ Scenario: Cadastro de disciplinas para a mesma turma
     And: Vejo apenas uma disciplina cadastradas, chamada "Economia", com horário "segunda 8-10 e sexta 10-12" e turma "18-A"
     When: Eu tento cadastrar uma nova disciplina chamada "Algoritmos", com horário "terça 10-12 e quinta 8-10" e turma "18-A"
     Then: A disciplina de nome "Algoritmos" é corretamente armazenada e o sistema possui duas disciplinas com o mesma turma
+
+Scenario: Cadastro de disciplinas com mesmos nome e turma  
+    Given: Estou na tela de disciplinas cadastradas
+    And: Estou logado como "Professor"
+    And: Vejo apenas uma disciplina cadastradas, chamada "Economia", com horário "segunda 8-10 e sexta 10-12" e turma "18-A"
+    When: Eu tento cadastrar uma nova disciplina chamada "Economia", com horário "terça 10-12 e quinta 8-10" e turma "18-A"
+    Then: A nova disciplina de nome "Economia" é corretamente armazenada e o sistema possui duas disciplinas com mesmos nome e turma

@@ -98,6 +98,12 @@ System Scenarios
         When Tento cadastrar uma dsiciplina uma nova disciplina com "nome_disciplina" ""
         Then O sistema levanta mensagem de erro de chave "nome_disciplina" inválido
 
+    Scenario: Cadastro de disciplina com "carga_horaria" inválida
+        Given Não existe no sistema uma disciplina com "nome_disciplina" "Matemática Discireta"
+        When Tento cadastrar uma dsiciplina uma nova disciplina com "carga_horaria" "-14h"
+        Then O sistema levanta mensagem de erro de chave "carga_horaria" inválido
+        And A nova disciplina "Matemática Discireta" não é cadastrada no sistema
+
     Scenario: Tento modificar o número de vagas de uma disciplina para algo menor que o número de alunos matriculados
         Given Já existe uma disciplina com "nome_disciplina" "Matemática Discreta"
         And a disciplina "Matemática Discreta" possui "numero_vagas"

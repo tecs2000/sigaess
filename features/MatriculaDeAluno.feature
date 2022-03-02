@@ -6,7 +6,7 @@ Scenario: Aluno Acessa a Área de Matrícula
 Given: que eu sou um aluno que está na tela inicial do sistema
 And: eu visualizo a opção de matrícula 
 When: eu clico no botão de matrícula
-Then: eu sou levado até a área de matrícula
+Then: eu sou movido até a área de matrícula
 And: visualizo um menu dropdown de seleção de matérias
 And: visualizo meus dados pessoais 
 And: visualizo uma grade de horário vazia

@@ -84,7 +84,7 @@ GUI Scenarios
         And Eu preencho "horarios" com "seg,7:00,9:00;qua,10:00,12:00"
         And Eu clico em salvar
         Then Eu recebo uma mensagem de erro
-        And Eu continuo na mesma tela e posso modificar ou preencher os valores da disciplina sendo cadastrada
+        And Eu continuo na páginas "Minhas Disciplinas" e posso modificar ou preencher os valores da disciplina sendo cadastrada
 
 System Scenarios
 

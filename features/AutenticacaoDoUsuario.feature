@@ -48,3 +48,9 @@ Scenario: Cadastrar novo usuário
 Given Não há nenhum CPF “12345678900” cadastrado no sistema
 When Tento cadastrar um novo usuário com o CPF “12345678900”
 Then O sistema possui um usuário cadastrado com o CPF “12345678900”
+
+Scenario: Tentar cadastrar CPF já cadastrado
+Given Há um CPF “12345678900” cadastrado no sistema
+When Tento cadastrar um novo usuário com o CPF “12345678900”
+Then O sistema já possui um usuário cadastrado com o CPF “12345678900”
+And Recebo uma mensagem de erro de CPF já cadastrado

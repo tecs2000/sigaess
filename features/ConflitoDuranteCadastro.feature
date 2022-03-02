@@ -1,5 +1,3 @@
-Feature 5
-
 Scenario: Disciplina cadastrada sem conflito
     Given: Estou na tela de disciplinas cadastradas
     And: Estou logado como "Professor"

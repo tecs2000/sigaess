@@ -133,7 +133,7 @@ System Scenarios
 
     Scenario: Cadastro de disciplina com "carga_horaria" inválida (valor negativo)
         Given Não existe no sistema uma disciplina com "nome_disciplina" "Matemática Discireta"
-        When Tento cadastrar uma dsiciplina uma nova disciplina com "carga_horaria" "-14h"
+        When Tento cadastrar uma dsiciplina uma nova disciplina com "carga_horaria" "-19h"
         Then O sistema levanta mensagem de erro de chave "carga_horaria" inválido
         And A nova disciplina "Matemática Discireta" não é cadastrada no sistema
 

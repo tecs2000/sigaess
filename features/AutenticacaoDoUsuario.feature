@@ -38,7 +38,9 @@ Then Ainda estou na tela de autenticação de usuários
 And Vejo uma mensagem de erro de CPF já cadastrado
 
 
+
 System Scenarios
+
 Scenario: Tentar fazer login com credenciais inválidas
 Given Não há nenhum CPF “12345678900” cadastrado no sistema
 When Tento logar com o CPF “12345678900” e a senha “123”

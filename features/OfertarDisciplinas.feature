@@ -105,7 +105,7 @@ System Scenarios
         When o sistema tenta modificar "numero_vagas" para algo menor do que a quantidade de "alunos_matriculados"
         Then O sistema levanta mensagem de erro de "novo valor para o número de vagas inválido"
 
-    Scenario: Tento modificar o número de vagas de uma disciplina para algo maior quando a quantidade de alunos máxima é alcançada
+    Scenario: Modifico o número de vagas de uma disciplina para algo maior quando a quantidade de alunos máxima é alcançada
         Given Já existe uma disciplina com "nome_disciplina" "Matemática Discreta"
         And a disciplina "Matemática Discreta" possui "numero_vagas"
         And a disciplina "Matemática Discreta" possui quantidade de "alunos_matriculados" igual ao "numero_vagas"

@@ -94,9 +94,15 @@ System Scenarios
         Then O sistema levanta mensagem de erro de chave "nome_disciplina" repetida
         And A disciplina não é cadastrada no sistema
     
-    Scenario: Cadastro de disciplina com "nome_disciplina" inválido
+    Scenario: Cadastro de disciplina com "nome_disciplina" inválido (vazio)
         Given Não existe no sistema uma disciplina com "nome_disciplina" "Matemática Discireta"
         When Tento cadastrar uma dsiciplina uma nova disciplina com "nome_disciplina" ""
+        Then O sistema levanta mensagem de erro de chave "nome_disciplina" inválido
+        And A disciplina não é cadastrada no sistema
+    
+    Scenario: Cadastro de disciplina com "nome_disciplina" inválido (caractere inválido)
+        Given Não existe no sistema uma disciplina com "nome_disciplina" "Matemática Discireta"
+        When Tento cadastrar uma dsiciplina uma nova disciplina com "nome_disciplina" "Дискретная математика"
         Then O sistema levanta mensagem de erro de chave "nome_disciplina" inválido
         And A disciplina não é cadastrada no sistema
 

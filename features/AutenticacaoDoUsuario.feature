@@ -1,5 +1,6 @@
 
 GUI Scenarios
+
 Scenario: Fazer login com credenciais de aluno 
 Given Estou na página de autenticação de usuários
 And Existe um CPF “12345678900” vinculado a um aluno

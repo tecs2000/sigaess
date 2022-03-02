@@ -55,7 +55,7 @@ GUI Scenarios
         And eu vejo apenas as disciplinas "Matemática Discreta" e "Lógica para programação"
         And a disciplina "Matemática Discreta" possui "10" alunos matriculados
         When eu clico para modificar a disciplina "Matemática Discreta"
-        And eu coloco o "numero de vagas" como "11"
+        And eu coloco o "numero_vagas" como "11"
         And eu clico que confirmar
         Then eu ainda estou na página "Minhas Disciplinas"
         And eu vejo a disciplina "Matemática Discreta" e "Lógica para programação"
@@ -67,7 +67,7 @@ GUI Scenarios
         And eu vejo apenas as disciplinas "Matemática Discreta" e "Lógica para programação"
         And a disciplina "Matemática Discreta" possui "10" alunos matriculados
         When eu clico para modificar a disciplina "Matemática Discreta"
-        And eu coloco o "numero de vagas" como "9"
+        And eu coloco o "numero_vagas" como "9"
         And eu clico que confirmar
         Then eu recebo uma mensagem de erro
         And eu continuo na mesma tela e posso modificar ou preencher os valores da disciplina sendo modificada
@@ -103,5 +103,4 @@ System Scenarios
         And a disciplina "Matemática Discreta" possui "numero_vagas"
         And a disciplina "Matemática Discreta" possui quantidade de "alunos_matriculados"
         When o sistema tenta modificar "numero_vagas" para algo menor do que a quantidade de "alunos_matriculados" 
-        Then O sistema levanta mensagem de erro de "novo valor para o numero de vagas inválido"
-    
+        Then O sistema levanta mensagem de erro de "novo valor para o número de vagas inválido"

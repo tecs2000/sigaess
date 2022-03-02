@@ -9,10 +9,10 @@ GUI Scenarios
         And Eu preencho "numero_vagas" com "60"
         And Eu preencho "carga_horaria" com "75h"
         And Eu preencho "departamento_ofertante" com "Centro de Informática"
-        And Eu preencho "horarios" com "seg 7:00 10:00" e  "ter 10:00 12:00"
+        And Eu preencho "horarios" com "seg 7:00 10:00" e "ter 10:00 12:00"
         And Eu clico em salvar
         Then Eu ainda estou na aba de "Minhas Disciplinas"
-        And Eu posso ver "Matemática Discreta" E "Lógica para programação" e suas respectivas informações
+        And Eu posso ver "Matemática Discreta" e "Lógica para programação" e suas respectivas informações
 
     Scenario: Professor tenta criar uma disciplina sem nome
         Given Eu estou logado no sistema como um professor
@@ -33,7 +33,7 @@ GUI Scenarios
         And Eu estou na página "Minhas Disciplinas"
         And Eu vejo apenas as disciplinas "Matemática Discreta" e "Lógica para programação"
         When Eu clico para remover a disciplina "Lógica para programação"
-        And o sistema me pergunta se Eu tenho certeza
+        And o sistema me pergunta se eu tenho certeza
         And Eu clico que sim
         Then Eu ainda estou na página "Minhas Disciplinas"
         And Eu vejo apenas a disciplina "Matemática Discreta"
@@ -72,7 +72,6 @@ GUI Scenarios
         Then Eu recebo uma mensagem de erro
         And Eu continuo na mesma tela e posso modificar ou preencher os valores da disciplina sendo modificada
 
-    
     Scenario: Professor tenta criar uma disciplina com nome repetido
         Given Eu estou logado no sistema como um professor
         And Eu estou na página de "Minhas Disciplinas"
@@ -88,6 +87,7 @@ GUI Scenarios
         And Eu continuo na mesma tela e posso modificar ou preencher os valores da disciplina sendo cadastrada
 
 System Scenarios
+
     Scenario: Cadastro de disciplina com "nome_disciplina" repetido
         Given Já existe no sistema uma disciplina com "nome_disciplina" "Matemática Discireta"
         When Tento cadastrar uma dsiciplina uma nova disciplina com "nome_disciplina" "Matemática Discireta"
@@ -98,12 +98,27 @@ System Scenarios
         Given Não existe no sistema uma disciplina com "nome_disciplina" "Matemática Discireta"
         When Tento cadastrar uma dsiciplina uma nova disciplina com "nome_disciplina" ""
         Then O sistema levanta mensagem de erro de chave "nome_disciplina" inválido
-        And a disciplina não é modifica no sistema
+        And a disciplina não é cadastrada no sistema
 
     Scenario: Tento modificar o número de vagas de uma disciplina para algo menor que o número de alunos matriculados
         Given Já existe uma disciplina com "nome_disciplina" "Matemática Discreta"
         And a disciplina "Matemática Discreta" possui "numero_vagas"
         And a disciplina "Matemática Discreta" possui quantidade de "alunos_matriculados"
-        When o sistema tenta modificar "numero_vagas" para algo menor do que a quantidade de "alunos_matriculados" 
+        When o sistema tenta modificar "numero_vagas" para algo menor do que a quantidade de "alunos_matriculados"
         Then O sistema levanta mensagem de erro de "novo valor para o número de vagas inválido"
         And Não ocorrem modificações nos dados salvos para a disciplina "Matemática Disciplinas" no sistema
+
+    Scenario: Modifico o número de vagas de uma disciplina para algo maior quando a quantidade de alunos máxima é alcançada
+        Given Já existe uma disciplina com "nome_disciplina" "Matemática Discreta"
+        And a disciplina "Matemática Discreta" possui "numero_vagas"
+        And a disciplina "Matemática Discreta" possui quantidade de "alunos_matriculados" igual ao "numero_vagas"
+        When o sistema tenta modificar "numero_vagas" para algo maior
+        Then O sistema atualiza o número de vagas
+        And As informações da disciplina "Matemática Discreta" são atualizadas no sistema
+        And Agora a disciplina aparece com vagas para alunos não matriculados
+
+    Scenario: Cadastro de disciplina com "carga_horaria" inválida
+        Given Não existe no sistema uma disciplina com "nome_disciplina" "Matemática Discireta"
+        When Tento cadastrar uma dsiciplina uma nova disciplina com "carga_horaria" "-14h"
+        Then O sistema levanta mensagem de erro de chave "carga_horaria" inválido
+        And A nova disciplina "Matemática Discireta" não é cadastrada no sistema

@@ -26,3 +26,10 @@ Given criei uma feature nova
 And utilizei o comando "git commit -a -m <Descrição_do_commit>"
 When eu usar o comando "git push origin main"
 Then a feature que criei estará no branch remoto "main"
+
+Scenario: Cenário teste da questão 7 letra f
+		
+Given estou na branch "main"
+When eu usar o comando "git checkout -b develop"
+Then foi criado a branch "develop"
+And eu posso ver que fui transferido da branch "main" para a branch "develop"

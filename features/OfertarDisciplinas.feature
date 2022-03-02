@@ -114,6 +114,14 @@ System Scenarios
         Then O sistema levanta mensagem de erro de "novo valor para o número de vagas inválido"
         And Não ocorrem modificações nos dados salvos para a disciplina "Matemática Disciplinas" no sistema
 
+    Scenario: Tento modificar o número de vagas de uma disciplina para o número de alunos matriculados
+        Given Já existe uma disciplina com "nome_disciplina" "Matemática Discreta"
+        And A disciplina "Matemática Discreta" possui "numero_vagas"
+        And A disciplina "Matemática Discreta" possui quantidade de "alunos_matriculados"
+        When O sistema tenta modificar "numero_vagas" para exatamente a quantidade de "alunos_matriculados"
+        Then O sistema atualiza as informações da disciplina
+        And Alunso não podem mais se matricular na disciplina já que está lotada
+
     Scenario: Modifico o número de vagas de uma disciplina para algo maior quando a quantidade de alunos máxima é alcançada
         Given Já existe uma disciplina com "nome_disciplina" "Matemática Discreta"
         And A disciplina "Matemática Discreta" possui "numero_vagas"

@@ -33,11 +33,11 @@ GUI Scenarios
         And Eu estou na página "Minhas Disciplinas"
         And Eu vejo apenas as disciplinas "Matemática Discreta" e "Lógica para programação"
         When Eu clico para remover a disciplina "Lógica para programação"
-        And o sistema me pergunta se eu tenho certeza
+        And O sistema me pergunta se eu tenho certeza
         And Eu clico que sim
         Then Eu ainda estou na página "Minhas Disciplinas"
         And Eu vejo apenas a disciplina "Matemática Discreta"
-        And a disciplina é removida do sistema
+        And A disciplina é removida do sistema
         
     Scenario: Professor modifica o nome de uma disciplina
         Given Eu estou logado no sistema como um professor
@@ -59,13 +59,13 @@ GUI Scenarios
         And Eu clico que confirmar
         Then Eu ainda estou na página "Minhas Disciplinas"
         And Eu vejo a disciplina "Matemática Discreta" e "Lógica para programação"
-        And a disciplina "Matemática Discreta" agora possui "11" como valor para o campo "numero_vagas"
+        And A disciplina "Matemática Discreta" agora possui "11" como valor para o campo "numero_vagas"
 
     Scenario: Professor tenta modifica o número de vagas de uma disciplina para algo menor que o número de alunos matriculados
         Given Eu estou logado no sistema como um professor
         And Eu estou na página "Minhas Disciplinas"
         And Eu vejo apenas as disciplinas "Matemática Discreta" e "Lógica para programação"
-        And a disciplina "Matemática Discreta" possui "10" alunos matriculados
+        And A disciplina "Matemática Discreta" possui "10" alunos matriculados
         When Eu clico para modificar a disciplina "Matemática Discreta"
         And Eu coloco o "numero_vagas" como "9"
         And Eu clico que confirmar
@@ -106,14 +106,14 @@ System Scenarios
 
     Scenario: Tento modificar o número de vagas de uma disciplina para algo menor que o número de alunos matriculados
         Given Já existe uma disciplina com "nome_disciplina" "Matemática Discreta"
-        And a disciplina "Matemática Discreta" possui "numero_vagas"
-        And a disciplina "Matemática Discreta" possui quantidade de "alunos_matriculados"
-        When o sistema tenta modificar "numero_vagas" para algo menor do que a quantidade de "alunos_matriculados"
+        And A disciplina "Matemática Discreta" possui "numero_vagas"
+        And A disciplina "Matemática Discreta" possui quantidade de "alunos_matriculados"
+        When O sistema tenta modificar "numero_vagas" para algo menor do que a quantidade de "alunos_matriculados"
         Then O sistema levanta mensagem de erro de "novo valor para o número de vagas inválido"
 
     Scenario: Modifico o número de vagas de uma disciplina para algo maior quando a quantidade de alunos máxima é alcançada
         Given Já existe uma disciplina com "nome_disciplina" "Matemática Discreta"
-        And a disciplina "Matemática Discreta" possui "numero_vagas"
-        And a disciplina "Matemática Discreta" possui quantidade de "alunos_matriculados" igual ao "numero_vagas"
+        And A disciplina "Matemática Discreta" possui "numero_vagas"
+        And A disciplina "Matemática Discreta" possui quantidade de "alunos_matriculados" igual ao "numero_vagas"
         When o sistema tenta modificar "numero_vagas" para algo maior
         Then O sistema atualiza o número de vagas, agora a disciplina aparece com vagas para alunos não matriculados

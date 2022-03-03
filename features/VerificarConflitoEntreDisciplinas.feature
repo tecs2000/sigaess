@@ -19,10 +19,3 @@ And, logo em seguida, tento adicionar a cadeira de "Estatística", com horário 
 Then eu vejo uma mensagem de alerta informando que o horário da cadeira em questão conflita com o horário de outra cadeira já adicionada anteriormente
 And continuo na tela de “Matrícula”
 And eu posso ver que a cadeira “Estatística” não foi adicionada
-
-Scenario: Cenário teste da questão 7 letra d
-		
-Given criei uma feature nova
-And utilizei o comando "git commit -a -m <Descrição_do_commit>"
-When eu usar o comando "git push origin main"
-Then a feature que criei estará no branch remoto "main"

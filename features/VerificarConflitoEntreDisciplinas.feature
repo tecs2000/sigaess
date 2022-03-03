@@ -19,4 +19,3 @@ And, logo em seguida, tento adicionar a cadeira de "Estatística", com horário 
 Then eu vejo uma mensagem de alerta informando que o horário da cadeira em questão conflita com o horário de outra cadeira já adicionada anteriormente
 And continuo na tela de “Matrícula”
 And eu posso ver que a cadeira “Estatística” não foi adicionada
-And eu posso ver que a cadeira “Cálculo 1” continua armazenada na grade de horários

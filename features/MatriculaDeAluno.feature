@@ -44,3 +44,4 @@ Scenario: Aluno Confirma Sua Matrícula
 	And visualizo que estou matriculado nas matérias adicionadas na grade de horário
 	And visualizo as informações referentes às matérias matriculadas
 	And visualizo um botão de retorno à tela inicial
+	Then o status de matrículado fica visível

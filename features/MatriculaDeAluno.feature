@@ -52,3 +52,8 @@ Scenario: Aluno Cancancela Seleção de Matéria
 	Then a janela de pop-up é fechada
 	And eu retorno para a área de matrícula
 
+Scenario: Aluno Retorna a Tela Inicial
+	Given que eu estou na área de confirmação de matrícula
+	And as matérias foram confirmadas
+	When eu clico no botão retornar
+	Then eu estou direcionado a tela inicial

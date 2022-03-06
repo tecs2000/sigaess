@@ -50,3 +50,5 @@ Scenario: Aluno Cancancela Seleção de Matéria
 	And não quero adicionar tal matéria
 	When eu clico no botão cancelar
 	Then a janela de pop-up é fechada
+	And eu retorno para a área de matrícula
+

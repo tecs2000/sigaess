@@ -51,7 +51,7 @@ Scenario: Aluno Retorna a Página Inicial
 	And eu fui devidamente matriculado
 	When eu clico botão de retornar
 	Then eu retorno para tela inicial 
-	
+
 Scenario: Aluno Cancela Seleção de Matéria
 	Given que eu estou visualizando o pop-up de matéria
 	And não quero adicionar tal matéria

@@ -46,16 +46,15 @@ Scenario: Aluno Confirma Sua Matrícula
 	And visualizo um botão de retorno à tela inicial
 	Then o status de matrículado fica visível
 	
-
+Scenario: Aluno Retorna a Página Inicial
+	Given que eu estou na tela de confirmação de matricula
+	And eu fui devidamente matriculado
+	When eu clico botão de retornar
+	Then eu retorno para tela inicial 
+	
 Scenario: Aluno Cancela Seleção de Matéria
 	Given que eu estou visualizando o pop-up de matéria
 	And não quero adicionar tal matéria
 	When eu clico no botão cancelar
 	Then a janela de pop-up é fechada
 	And eu retorno para a área de matrícula
-
-Scenario: Aluno Retorna a Tela Inicial
-	Given que eu estou na área de confirmação de matrícula
-	And as matérias foram confirmadas
-	When eu clico no botão retornar
-	Then eu estou direcionado a tela inicial

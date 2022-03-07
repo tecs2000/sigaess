@@ -37,7 +37,7 @@ Scenario: Aluno Remove Matéria
 	Then a matéria ESS não está mais presente na grade de horário
 
 Scenario: Aluno Confirma Sua Matrícula
-	Given que eu estou na área de matrícula
+   Given que eu estou na área de matrícula
 	And há matérias de ESS e GDI na grade de horário 
 	When eu clico a opção de confirmar localizada na área matrícula
 	Then sou levado à uma nova janela

@@ -93,52 +93,9 @@ System Scenarios
         When Tento cadastrar uma dsiciplina uma nova disciplina com "nome_disciplina" "Matemática Discireta"
         Then O sistema levanta mensagem de erro de chave "nome_disciplina" repetida
         And A disciplina não é cadastrada no sistema
-    
-    Scenario: Cadastro de disciplina com "nome_disciplina" inválido (vazio)
-        Given Não existe no sistema uma disciplina com "nome_disciplina" "Matemática Discireta"
-        When Tento cadastrar uma dsiciplina uma nova disciplina com "nome_disciplina" ""
-        Then O sistema levanta mensagem de erro de chave "nome_disciplina" inválido
-        And A disciplina não é cadastrada no sistema
-    
-    Scenario: Cadastro de disciplina com "nome_disciplina" inválido (caractere inválido)
-        Given Não existe no sistema uma disciplina com "nome_disciplina" "Matemática Discireta"
-        When Tento cadastrar uma dsiciplina uma nova disciplina com "nome_disciplina" "Дискретная математика"
-        Then O sistema levanta mensagem de erro de chave "nome_disciplina" inválido
-        And A disciplina não é cadastrada no sistema
-
-    Scenario: Tento modificar o número de vagas de uma disciplina para algo menor que o número de alunos matriculados
-        Given Já existe uma disciplina com "nome_disciplina" "Matemática Discreta"
-        And A disciplina "Matemática Discreta" possui "numero_vagas"
-        And A disciplina "Matemática Discreta" possui quantidade de "alunos_matriculados"
-        When O sistema tenta modificar "numero_vagas" para algo menor do que a quantidade de "alunos_matriculados"
-        Then O sistema levanta mensagem de erro de "novo valor para o número de vagas inválido"
-        And Não ocorrem modificações nos dados salvos para a disciplina "Matemática Disciplinas" no sistema
-
-    Scenario: Tento modificar o número de vagas de uma disciplina para o número de alunos matriculados
-        Given Já existe uma disciplina com "nome_disciplina" "Matemática Discreta"
-        And A disciplina "Matemática Discreta" possui "numero_vagas"
-        And A disciplina "Matemática Discreta" possui quantidade de "alunos_matriculados"
-        When O sistema tenta modificar "numero_vagas" para exatamente a quantidade de "alunos_matriculados"
-        Then O sistema atualiza as informações da disciplina
-        And Alunso não podem mais se matricular na disciplina "Matemática Discreta" já que está lotada
-
-    Scenario: Modifico o número de vagas de uma disciplina para algo maior quando a quantidade de alunos máxima é alcançada
-        Given Já existe uma disciplina com "nome_disciplina" "Matemática Discreta"
-        And A disciplina "Matemática Discreta" possui "numero_vagas"
-        And A disciplina "Matemática Discreta" possui quantidade de "alunos_matriculados" igual ao "numero_vagas"
-        When o sistema tenta modificar "numero_vagas" para algo maior
-        Then O sistema atualiza o número de vagas
-        And As informações da disciplina "Matemática Discreta" são atualizadas no sistema
-        And Agora a disciplina aparece com vagas para alunos não matriculados
 
     Scenario: Cadastro de disciplina com "carga_horaria" inválida (valor negativo)
         Given Não existe no sistema uma disciplina com "nome_disciplina" "Matemática Discireta"
         When Tento cadastrar uma dsiciplina uma nova disciplina com "carga_horaria" "-19h"
-        Then O sistema levanta mensagem de erro de chave "carga_horaria" inválido
-        And A nova disciplina "Matemática Discireta" não é cadastrada no sistema
-
-    Scenario: Cadastro de disciplina com "carga_horaria" inválida (valor maior que o limite)
-        Given Não existe no sistema uma disciplina com "nome_disciplina" "Matemática Discireta"
-        When Tento cadastrar uma dsiciplina uma nova disciplina com "carga_horaria" "99999999999999999999999h"
         Then O sistema levanta mensagem de erro de chave "carga_horaria" inválido
         And A nova disciplina "Matemática Discireta" não é cadastrada no sistema

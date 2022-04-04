@@ -14,6 +14,9 @@ export class CriarCadeiraComponent implements OnInit {
 
   cadeira: Cadeira = new Cadeira();
   mensagem_erro_adicionar: string = "";
+  horario: number;
+  weekdays: string[] = ["seg", "ter", "qua", "qui", "sex", "sab"];
+  horarios: Array<number> = Array(24).fill(0).map((x,i)=>i);;
 
   criarCadeira(c: Cadeira): void {
     var result_criar = this.cadeirasService.criar(c)
@@ -23,6 +26,26 @@ export class CriarCadeiraComponent implements OnInit {
     } else {
       this.mensagem_erro_adicionar = result_criar;
     }
+  }
+
+  toggleHorario(cadeira: Cadeira, weekday:string, horario: number) {
+    if (cadeira.horarios[weekday]) {
+      if (cadeira.horarios[weekday].has(horario)) {
+        this.removerHorario(cadeira, weekday, horario)
+        return
+      } else {
+        this.addHorario(cadeira, weekday, horario)
+        return
+      }
+    }
+  }
+
+  addHorario(cadeira: Cadeira, weekday: string, horario: number) {
+    cadeira.addHorario(weekday, horario);
+  }
+
+  removerHorario(cadeira: Cadeira, weekday: string, horario: number) {
+    cadeira.removerHorario(weekday, horario);
   }
 
   onMove(): void {

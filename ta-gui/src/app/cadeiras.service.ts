@@ -8,21 +8,43 @@ export class CadeiraService {
 
   criar(cadeira: Cadeira): Cadeira | string {
     cadeira = cadeira.clone();
-    var result: Cadeira | string = "Erro";
-    if (this.checkCriar(cadeira)) {
+    var result_check = this.checkCriar(cadeira);
+    if (result_check == "ok") {
       this.cadeiras.push(cadeira);
-      result = cadeira;
+      return cadeira;
     }
-    return result;
+    return result_check;
   }
   
-  checkCriar(cadeira: Cadeira): boolean {
+  checkCriar(cadeira: Cadeira): string {
     if (!this.cadeiraNaoCadastrada(cadeira.nome_disciplina)) {
+      return "Cadeira Já Cadastrada";
+    } if (!this.validNomeDisc(cadeira.nome_disciplina)) {
+      return "Nome da Disciplina Inválido";
+    } if (!this.validNumVagas(cadeira.numero_vagas)) {
+      return "Numero de Vagas Inválido";
+    }
+    return "ok";
+  }
+
+  validNomeDisc(nome_disciplina: string): boolean {
+    if (nome_disciplina.replace(/\s/g, '') == "") {
+      return false;
+    }
+    return true;
+  }
+  
+  validNumVagas(num_str: string) {
+    if (Number.isNaN(num_str)) {
+      return false;
+    } 
+    const num = Number(num_str);
+    if (!Number.isInteger(num) || num <= 0) {
       return false
     }
     return true
   }
-  
+
   cadeiraNaoCadastrada(nome_disciplina: string): boolean {
     return !this.cadeiras.find(a => a.nome_disciplina == nome_disciplina);
   }
@@ -34,10 +56,12 @@ export class CadeiraService {
         c.alunos = cadeira.alunos;
       }
   }
-
-  getCadeiras(): Cadeira[] {
+  
+  getCadeiras(nome_professor="", departamento_ofertante=""): Cadeira[] {
     var result: Cadeira[] = [];
     for (let c of this.cadeiras) {
+      if ((nome_professor=="" || c.nome_professor == nome_professor)
+          && (departamento_ofertante=="" || c.departamento_ofertante==departamento_ofertante))
         result.push(c.clone());
     }
     return result;

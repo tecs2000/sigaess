@@ -6,7 +6,7 @@ export class Cadeira {
     numero_vagas: string;
     carga_horaria: string;
     departamento_ofertante: string;
-    horarios: string[];
+    horarios: Map<string, Set<number>> = this.horariosInitial();
     alunos: Aluno[];
   
     constructor() {
@@ -19,7 +19,7 @@ export class Cadeira {
       this.numero_vagas = "";
       this.carga_horaria = "";
       this.departamento_ofertante = "";
-      this.horarios = [];
+      this.horarios = this.horariosInitial();
       this.alunos = [];
     }
   
@@ -34,12 +34,21 @@ export class Cadeira {
       cadeira.alunos = this.cloneAlunos();
       return cadeira;
     }
+
+    horariosInitial(): Map<string, Set<number>> {
+      var  horarios: Map<string, Set<number>> = new Map<string, Set<number>>();
+      horarios["seg"] = new Set<number>();
+      horarios["ter"] = new Set<number>();
+      horarios["qua"] = new Set<number>();
+      horarios["qui"] = new Set<number>();
+      horarios["sex"] = new Set<number>();
+      horarios["sab"] = new Set<number>();
+      return horarios
+    }
   
-    cloneHorarios(): string[] {
-      var horarios: string[] = [];
-      for (let h in this.horarios) {
-        horarios.push(h);
-      }
+    cloneHorarios(): Map<string, Set<number>> {
+      var horarios: Map<string, Set<number>> = new Map<string, Set<number>>();
+
       return horarios;
     }
 
@@ -51,8 +60,16 @@ export class Cadeira {
       return alunos;
     }
     
-    addHorario(h: string): void {
-      this.horarios.push(h)      
+    addHorario(weekday: string, h: number): void {
+      if (this.horarios[weekday]) {
+        this.horarios[weekday].add(h);
+      }
+    }
+
+    removerHorario(weekday: string, horario: number): void {
+      if (this.horarios[weekday]) {
+        this.horarios[weekday].delete(horario);
+      }
     }
   }
   

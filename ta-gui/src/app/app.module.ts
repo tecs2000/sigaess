@@ -8,12 +8,15 @@ import { AppComponent } from './app.component';
 import { MetasComponent } from './metas.component';
 import { AlunosComponent } from './alunos.component';
 import { AlunoService } from './aluno.service';
+import { CadeirasComponent } from './cadeiras.component';
+import { CadeiraService} from './cadeiras.service'
 
 @NgModule({
   declarations: [
     AppComponent,
     MetasComponent,
-    AlunosComponent
+    AlunosComponent,
+    CadeirasComponent
   ],
   imports: [
     BrowserModule,
@@ -27,10 +30,14 @@ import { AlunoService } from './aluno.service';
       {
         path: 'alunos',
         component: AlunosComponent
+      },
+      {
+        path: "cadeiras",
+        component: CadeirasComponent
       }
     ])
   ],
-  providers: [AlunoService],
+  providers: [AlunoService, CadeiraService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

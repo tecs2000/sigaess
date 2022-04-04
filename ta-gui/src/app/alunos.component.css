@@ -5,7 +5,7 @@
    width: 15em;
  }
 
-  .alunos li {
+  .alunos td {
    cursor: pointer;
    position: relative;
    left: 0;

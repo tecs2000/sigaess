@@ -9,8 +9,8 @@
       <tr>
         <td><label>Professor </label></td>
         <td><input [(ngModel)]="cadeira.nome_professor" ></td>
-        <td *ngIf="nome_disciplina_duplicado">
-          Já existe uma cadeira com esse nome
+        <td *ngIf="mensagem_erro_adicionar">
+          {{mensagem_erro_adicionar}}
         </td>
       </tr>
       <tr>

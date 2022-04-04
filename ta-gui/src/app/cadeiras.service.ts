@@ -6,9 +6,9 @@ import { Cadeira } from "./cadeiras";
 export class CadeiraService {
   cadeiras: Cadeira[] = [];
 
-  criar(cadeira: Cadeira): Cadeira | null {
+  criar(cadeira: Cadeira): Cadeira | string {
     cadeira = cadeira.clone();
-    var result = null;
+    var result: Cadeira | string = "Erro";
     if (this.checkCriar(cadeira)) {
       this.cadeiras.push(cadeira);
       result = cadeira;

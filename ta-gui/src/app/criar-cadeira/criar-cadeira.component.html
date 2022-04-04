@@ -45,7 +45,7 @@
             <td *ngIf="h < 10" align="center">0{{h}}:00</td>
             <td *ngIf="h >= 10" align="center">{{h}}:00</td>
             <td *ngFor="let weekday of weekdays" (click)="toggleHorario(cadeira, weekday, h)" align="center">
-              {{cadeira.horarios[weekday].has(h)}}
+              <div *ngIf="cadeira.horarios[weekday].has(h)" class="horario_selecionado">.</div>
             </td>
           </tr>
         </tbody>

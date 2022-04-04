@@ -22,3 +22,8 @@ background-color: #cce6ff;
 table, th, td {
     border: 1px solid black;
 }
+
+.horario_selecionado {
+    background-color:brown;
+    height: 100%;
+}

@@ -1,21 +1,23 @@
 <html>
-  <td><a routerLink="/criarCadeira"><button>Adicionar</button></a></td>
-  <div class="tabela_cadeiras">
-    <table>
-      <tr>
-        <th>Nome </th>
-        <th>Professor </th>
-        <th>Total de Vagas </th>
-        <th>Carga Horária </th>
-        <th>Departamento Ofertante </th>
-      </tr>
-      <tr *ngFor="let c of cadeiras" class="cadeiras">
-        <td>{{c.nome_disciplina}}</td>
-        <td>{{c.nome_professor}}</td>
-        <td>{{c.numero_vagas}}</td>
-        <td>{{c.carga_horaria}}</td>
-        <td>{{c.departamento_ofertante}}</td>
-      </tr>
-    </table>
+  <div align="center">
+    <td><a routerLink="/criarCadeira"><button>Adicionar</button></a></td>
+    <div class="tabela_cadeiras">
+      <table>
+        <tr>
+          <th>Nome </th>
+          <th>Professor </th>
+          <th>Total de Vagas </th>
+          <th>Carga Horária </th>
+          <th>Departamento Ofertante </th>
+        </tr>
+        <tr *ngFor="let c of cadeiras" class="cadeiras">
+          <td>{{c.nome_disciplina}}</td>
+          <td>{{c.nome_professor}}</td>
+          <td>{{c.numero_vagas}}</td>
+          <td>{{c.carga_horaria}}</td>
+          <td>{{c.departamento_ofertante}}</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </html>

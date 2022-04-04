@@ -4,7 +4,7 @@ export class Cadeira {
     nome_disciplina: string;
     nome_professor: string;
     numero_vagas: string;
-    carga_horaria: string;
+    carga_horaria: number;
     departamento_ofertante: string;
     horarios: Map<string, Set<number>> = this.horariosInitial();
     alunos: Aluno[];
@@ -17,7 +17,7 @@ export class Cadeira {
       this.nome_disciplina = "";
       this.nome_professor = "";
       this.numero_vagas = "";
-      this.carga_horaria = "";
+      this.carga_horaria = 0;
       this.departamento_ofertante = "";
       this.horarios = this.horariosInitial();
       this.alunos = [];
@@ -63,12 +63,14 @@ export class Cadeira {
     addHorario(weekday: string, h: number): void {
       if (this.horarios[weekday]) {
         this.horarios[weekday].add(h);
+        this.carga_horaria += 1;
       }
     }
 
     removerHorario(weekday: string, horario: number): void {
       if (this.horarios[weekday]) {
         this.horarios[weekday].delete(horario);
+        this.carga_horaria -= 1;
       }
     }
   }

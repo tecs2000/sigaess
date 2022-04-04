@@ -6,7 +6,7 @@ export class Cadeira {
     numero_vagas: string;
     carga_horaria: number;
     departamento_ofertante: string;
-    horarios: Map<string, Set<number>> = this.horariosInitial();
+    horarios: Map<string, Set<number>>;
     alunos: Aluno[];
   
     constructor() {

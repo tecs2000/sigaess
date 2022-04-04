@@ -15,16 +15,16 @@
       </tr>
       <tr>
         <td><label>Departamento Ofertante </label></td>
-        <td><input [(ngModel)]="cadeira.departamento_ofertante" ></td>
+        <td  align="right">
+          <select [(ngModel)]="cadeira.departamento_ofertante">
+          <option *ngFor="let d of departamentos" value={{d}}>{{d}}</option>
+          </select>
+        </td>
       </tr>
       <tr>
         <td><label>Total de vagas </label></td>
         <td><input type="number" min="1" [(ngModel)]="cadeira.numero_vagas" ></td>
       </tr>
-      <!-- <tr>
-        <td><label>Carga Horária </label></td>
-        <td><input type="number" min="1" [(ngModel)]="cadeira.carga_horaria" ></td>
-      </tr> -->
     </table>
     <br>
     <div class="gradeHorarios">

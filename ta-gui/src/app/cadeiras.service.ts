@@ -5,7 +5,17 @@ import { Cadeira } from "./cadeiras";
 @Injectable()
 export class CadeiraService {
   cadeiras: Cadeira[] = [];
-  departamentos: Set<string> = new Set<string>();
+  departamentos: Set<string> = new Set<string>(["CAC",
+                                                "CB",
+                                                "CCEN",
+                                                "CCJ",
+                                                "CCS",
+                                                "CCM",
+                                                "CCSA",
+                                                "CE",
+                                                "CFCH",
+                                                "CIn",
+                                                "CTG"]);
 
   criar(cadeira: Cadeira): Cadeira | string {
     cadeira = cadeira.clone();
@@ -29,8 +39,17 @@ export class CadeiraService {
       return "Nome de Professor Inválido"
     } if (!this.validNumVagas(cadeira.numero_vagas)) {
       return "Numero de Vagas Inválido";
+    } if (!this.validCargHoraria(cadeira.carga_horaria)) {
+      return "Horário inválido"
     }
     return "ok";
+  }
+
+  validCargHoraria(num: number): boolean {
+    if (!Number.isInteger(num) || num <= 0) {
+      return false
+    }
+    return true
   }
 
   validNomeDisc(nome_disciplina: string): boolean {

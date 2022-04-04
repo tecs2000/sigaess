@@ -13,6 +13,7 @@ export class CriarCadeiraComponent implements OnInit {
   constructor(private _route: Router, private cadeirasService: CadeiraService) { }
 
   cadeira: Cadeira = new Cadeira();
+  departamentos: string[] = [];
   mensagem_erro_adicionar: string = "";
   horario: number;
   weekdays: string[] = ["seg", "ter", "qua", "qui", "sex", "sab"];
@@ -53,6 +54,7 @@ export class CriarCadeiraComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.departamentos = this.cadeirasService.getDepartamentos()
   }
 
 }

@@ -19,5 +19,17 @@
         </tr>
       </table>
     </div>
+    <br>
+    <table *ngFor="let c of cadeiras" width="100%" bgcolor="#ffffff" class="cadeiras_list">
+      <tbody>
+        <tr>
+          <td align="left">
+            <input type="button" style="min-width:20px" value="+">
+            <font class="edit"><b>{{c.nome_disciplina}}: </b></font>
+            <font class="edit_pesquisa"><b>{{c.nome_professor}}</b></font>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </html>

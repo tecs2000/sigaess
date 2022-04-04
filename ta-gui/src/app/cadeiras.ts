@@ -50,5 +50,9 @@ export class Cadeira {
       }
       return alunos;
     }
+    
+    addHorario(h: string): void {
+      this.horarios.push(h)      
+    }
   }
   

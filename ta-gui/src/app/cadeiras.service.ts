@@ -9,13 +9,20 @@ export class CadeiraService {
   criar(cadeira: Cadeira): Cadeira | null {
     cadeira = cadeira.clone();
     var result = null;
-    if (this.cadeiraNaoCadastrada(cadeira.nome_disciplina)) {
+    if (this.checkCriar(cadeira)) {
       this.cadeiras.push(cadeira);
       result = cadeira;
     }
     return result;
   }
-
+  
+  checkCriar(cadeira: Cadeira): boolean {
+    if (!this.cadeiraNaoCadastrada(cadeira.nome_disciplina)) {
+      return false
+    }
+    return true
+  }
+  
   cadeiraNaoCadastrada(nome_disciplina: string): boolean {
     return !this.cadeiras.find(a => a.nome_disciplina == nome_disciplina);
   }

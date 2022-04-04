@@ -1,35 +1,8 @@
-<html (mousemove)="onMove()">
-  <div class="formulario_cadeira">
-    <table>
-      <tr>
-        <td><label>Nome </label></td>
-        <td><input [(ngModel)]="cadeira.nome_disciplina" ></td>
-        <td><button (click)="criarCadeira(cadeira)">Adicionar</button></td>
-      </tr>
-      <tr>
-        <td><label>Professor </label></td>
-        <td><input [(ngModel)]="cadeira.nome_professor" ></td>
-        <td *ngIf="nome_disciplina_duplicado">
-          Já existe uma cadeora com esse nome
-        </td>
-      </tr>
-      <tr>
-        <td><label>Total de vagas </label></td>
-        <td><input [(ngModel)]="cadeira.numero_vagas" ></td>
-      </tr>
-      <tr>
-        <td><label>Carga Horária </label></td>
-        <td><input [(ngModel)]="cadeira.carga_horaria" ></td>
-      </tr>
-      <tr>
-        <td><label>Departamento Ofertante </label></td>
-        <td><input [(ngModel)]="cadeira.departamento_ofertante" ></td>
-      </tr>
-    </table>
-  </div>
+<html>
+  <td><a routerLink="/criarCadeira"><button>Adicionar</button></a></td>
   <div class="tabela_cadeiras">
     <table>
-      <tr *ngIf="cadeiras.length > 0">
+      <tr>
         <th>Nome </th>
         <th>Professor </th>
         <th>Total de Vagas </th>

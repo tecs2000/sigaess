@@ -1,0 +1,20 @@
+.cadeiras {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    width: 15em;
+}
+
+.tabela_cadeiras th {
+background-color: #3399ff;
+color: #ffffff;
+}
+
+.tabela_cadeiras td, th {
+padding: 15px;
+border-bottom: 1px solid #ddd;
+}
+
+.tabela_cadeiras tr:hover {
+background-color: #cce6ff;
+}

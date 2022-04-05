@@ -19,16 +19,28 @@
         </tr>
       </table>
     </div>
-    <br>
-    <table *ngFor="let c of cadeiras" width="100%" bgcolor="#ffffff" class="cadeiras_list">
+  </div>
+  <br>
+  <div>
+    <table *ngFor="let d of departamentos" width="100%">
       <tbody>
         <tr>
           <td align="left">
             <input type="button" style="min-width:20px" value="+">
-            <font class="edit"><b>{{c.nome_disciplina}}: </b></font>
-            <font class="edit_pesquisa"><b>{{c.nome_professor}}</b></font>
+            <font class="edit"><b>{{d}}: </b></font>
           </td>
         </tr>
+        <table *ngFor="let c of getTableLine(d)">
+          <tr>
+            <td>
+              <input type="button" style="min-width:20px" value="+">
+              <font class="edit"><b>{{c.nome_disciplina}}: </b></font>
+            </td>
+          </tr>
+          <tr>Professor: {{c.nome_professor}}</tr>
+          <tr>Número de Vagas Totais: {{c.numero_vagas}}</tr>
+          <tr>Carga Horária: {{c.carga_horaria}}</tr>
+        </table>
       </tbody>
     </table>
   </div>

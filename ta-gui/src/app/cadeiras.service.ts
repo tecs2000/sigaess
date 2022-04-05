@@ -89,12 +89,12 @@ export class CadeiraService {
       }
   }
   
-  getCadeiras(nome_professor="", departamento_ofertante=""): Cadeira[] {
+  getCadeiras(departamento_ofertante=""): Cadeira[] {
     var result: Cadeira[] = [];
     for (let c of this.cadeiras) {
-      if ((nome_professor=="" || c.nome_professor == nome_professor)
-          && (departamento_ofertante=="" || c.departamento_ofertante==departamento_ofertante))
+      if (departamento_ofertante=="" || c.departamento_ofertante==departamento_ofertante) {
         result.push(c.clone());
+      }
     }
     return result;
   }
@@ -110,7 +110,7 @@ export class CadeiraService {
   getTable(): Map<string,Cadeira[]> {
     var result: Map<string,Cadeira[]> = new Map<string,Cadeira[]>();
     this.departamentos.forEach(d => {
-      result[d] = this.getCadeiras("", d);
+      result.set(d, this.getCadeiras(d)) ;
     })
     return result;
   }

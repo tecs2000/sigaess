@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { Professor } from './professor';
 import { ProfService } from './prof.service';
+import { LoginService } from './login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'professores',
@@ -10,21 +12,23 @@ import { ProfService } from './prof.service';
   styleUrls: ['./prof.component.css']
 })
 export class ProfComponent implements OnInit {
-   constructor(private profService: ProfService) {}
+   constructor(private _route: Router, private profService: ProfService, private loginService: LoginService) {}
 
    prof: Professor = new Professor();
    profs: Professor[];
    cpfduplicado: boolean = false;
 
-   logarProf(a: Professor): void {
+  logarProf(a: Professor): void {
     if (this.profService.cpfNaoCadastrado(a.cpf)) {
-      alert("CPF inválido. Usuário não Cadastrado.")
+      alert("CPF inválido. Usuário não Cadastrado.");
     } else {
       if (this.profService.checksenha(a.cpf,a.senha)){
-        alert("Senha inválida. Tente novamente.")
+        alert("Senha inválida. Tente novamente.");
       } else {
+        this.loginService.login(a, "Professor");
         //tela de entrada
-        alert("Login efetuado! Seja bem vindo!")
+        alert("Login efetuado! Seja bem vindo!");
+        this._route.navigate(['cadeiras']);
       }
     }
   }

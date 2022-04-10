@@ -14,6 +14,7 @@ import { CriarCadeiraComponent } from './criar-cadeira/criar-cadeira.component'
 import { ProfComponent } from './prof.component';
 import { CadastroComponent } from './cadastro.component';
 import { ProfService } from './prof.service';
+import { LoginService } from './login.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import { ProfService } from './prof.service';
       }
     ])
   ],
-  providers: [AlunoService, ProfService, CadeiraService],
+  providers: [AlunoService, ProfService, CadeiraService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

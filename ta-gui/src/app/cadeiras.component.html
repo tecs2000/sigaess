@@ -1,6 +1,6 @@
 <html>
   <div align="center">
-    <table>
+    <table *ngIf="checkIfAluno(accountType)">
       <td><a routerLink="/criarCadeira"><button>Adicionar</button></a></td>
     </table>
     <table>

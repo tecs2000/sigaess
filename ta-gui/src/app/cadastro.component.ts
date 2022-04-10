@@ -11,29 +11,29 @@ import { AlunoService } from './aluno.service';
 })
 export class CadastroComponent implements OnInit {
    
-   constructor(private alunoService: AlunoService) {}
+  constructor(private alunoService: AlunoService) {}
 
-   aluno: Aluno = new Aluno();
-   alunos: Aluno[];
-   cpfduplicado: boolean = false;
+  aluno: Aluno = new Aluno();
+  alunos: Aluno[];
+  cpfduplicado: boolean = false;
 
-   criarAluno(a: Aluno): void {
-     if (this.alunoService.criar(a)) {
-       this.alunos.push(a);
-       this.aluno = new Aluno();
-       alert("Cadastro realizado. Faça Login.")
-     } else {
-       alert("Esse CPF já foi cadastrado. Tente Novamente")
-       this.cpfduplicado = true;
-     }
-   }
+  criarAluno(a: Aluno): void {
+    if (this.alunoService.criar(a)) {
+      this.alunos.push(a);
+      this.aluno = new Aluno();
+      alert("Cadastro realizado. Faça Login.")
+    } else {
+      alert("Esse CPF já foi cadastrado. Tente Novamente")
+      this.cpfduplicado = true;
+    }
+  }
 
-   onMove(): void {
-      this.cpfduplicado = false;
-   }
+  onMove(): void {
+    this.cpfduplicado = false;
+  }
 
-   ngOnInit(): void {
-     this.alunos = this.alunoService.getAlunos();
-   }
+  ngOnInit(): void {
+    this.alunos = this.alunoService.getAlunos();
+  }
 
 }

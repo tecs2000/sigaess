@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Aluno } from './aluno';
 import { AlunoService } from './aluno.service';
+import { LoginService } from './login.service';
 
 @Component({  
   selector: 'app-root',
@@ -10,7 +12,7 @@ import { AlunoService } from './aluno.service';
   styleUrls: ['./alunos.component.css']
 })
 export class AlunosComponent implements OnInit {
-  constructor(private alunoService: AlunoService) {}
+  constructor(private _route: Router, private alunoService: AlunoService, private loginService: LoginService) {}
 
   aluno: Aluno = new Aluno();
   alunos: Aluno[];
@@ -23,8 +25,10 @@ export class AlunosComponent implements OnInit {
       if (this.alunoService.checksenha(a.cpf,a.senha)){
         alert("Senha inválida. Tente novamente.")
       } else {
+        this.loginService.login(a, "Aluno");
         //tela de entrada
-        alert("Login efetuado! Seja bem vindo!")
+        alert("Login efetuado! Seja bem vindo!");
+        this._route.navigate(['cadeiras']);
       }
     }
   }

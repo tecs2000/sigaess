@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
+import { Aluno } from './aluno';
 
 import { Cadeira } from './cadeiras';
 import { CadeiraService } from './cadeiras.service';
+import { LoginService } from './login.service';
+import { Professor } from './professor';
 
 @Component({  
   selector: 'cadeiras',
@@ -10,8 +13,9 @@ import { CadeiraService } from './cadeiras.service';
   styleUrls: ['./cadeiras.component.css']
 })
 export class CadeirasComponent implements OnInit {
-  constructor(private cadeirasService: CadeiraService) {}
+  constructor(private cadeirasService: CadeiraService, private loginService: LoginService) {}
   
+  accountType: string;
   cadeiras: Cadeira[];
   departamentos: string[];
 
@@ -24,6 +28,7 @@ export class CadeirasComponent implements OnInit {
   ngOnInit(): void {
     this.cadeiras = this.cadeirasService.getCadeiras();
     this.departamentos = this.cadeirasService.getDepartamentos();
+    this.accountType = this.loginService.getType();
   }
 
   getTableLine(k: string): Cadeira[]{
@@ -43,5 +48,12 @@ export class CadeirasComponent implements OnInit {
 
   getType(a: any): string {
     return typeof a;
+  }
+
+  checkIfAluno(accountType: string): boolean {
+    if (accountType == "Aluno") {
+      return true;
+    }
+    return false;
   }
 }

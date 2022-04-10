@@ -1,7 +1,7 @@
-.login{
+.cad{
   margin-left:auto; 
   margin-right:auto;
-  background-color: rgb(243, 242, 179);
+  background-color: rgb(228, 179, 243);
   padding: 10px;
   margin-top: 8%;
 }
@@ -28,12 +28,10 @@ button:hover {
   cursor: hand;
 }
 
-.btlogin{
-  font-family: Arial;
-  background-color: rgb(241, 129, 38);
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  cursor: hand;
+body{
+  margin-left: 46%;
+}
+
+h4{
+  text-align: center;
 }

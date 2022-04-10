@@ -1,21 +1,21 @@
 <html (mousemove)="onMove()">
 
-<h3 class="msg">Bem vindo, aluno!</h3>
+<h3 class="msg">Bem vindo, professor!</h3>
 
 <table class="login">
 <tr>
    <td><label>CPF </label></td>
-   <td><input [(ngModel)]="aluno.cpf" ></td>
+   <td><input [(ngModel)]="prof.cpf" ></td>
    <td *ngIf="cpfduplicado">
-     Já existe um aluno com esse CPF
+     Já existe um prof com esse CPF
    </td>
 </tr>
 <tr>
    <td><label>Senha </label></td>
-   <td><input [(ngModel)]="aluno.senha" ></td>
+   <td><input [(ngModel)]="prof.senha" ></td>
 </tr>
 <tr>
-   <td><button class="btlogin" (click)="logarAluno(aluno)">Fazer Login</button></td>
+   <td><button class="btlogin" (click)="logarProf(prof)">Fazer Login</button></td>
 </tr>
 </table>
 
@@ -28,3 +28,4 @@
 <router-outlet></router-outlet>
 
 </html>
+

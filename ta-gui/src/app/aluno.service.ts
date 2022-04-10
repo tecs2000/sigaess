@@ -29,6 +29,10 @@ export class AlunoService {
     }
   }
 
+  checksenha(cpf: string, senha: string): boolean {
+    return !this.alunos.find(a => a.cpf == cpf && a.senha == senha);
+  }
+
   getAlunos(): Aluno[] {
     var result: Aluno[] = [];
     for (let a of this.alunos) {

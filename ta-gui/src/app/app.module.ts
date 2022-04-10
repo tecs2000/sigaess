@@ -11,12 +11,17 @@ import { AlunoService } from './aluno.service';
 import { CadeirasComponent } from './cadeiras.component';
 import { CadeiraService} from './cadeiras.service';
 import { CriarCadeiraComponent } from './criar-cadeira/criar-cadeira.component'
+import { ProfComponent } from './prof.component';
+import { CadastroComponent } from './cadastro.component';
+import { ProfService } from './prof.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     MetasComponent,
+    ProfComponent,
     AlunosComponent,
+    CadastroComponent,
     CadeirasComponent,
     CriarCadeiraComponent
   ],
@@ -26,12 +31,20 @@ import { CriarCadeiraComponent } from './criar-cadeira/criar-cadeira.component'
     FormsModule,
     RouterModule.forRoot([
       {
-        path: 'metas',
-        component: MetasComponent
+        path: 'professores',
+        component: ProfComponent
       },
       {
         path: 'alunos',
         component: AlunosComponent
+      },
+      {
+        path: 'cadastro',
+        component: CadastroComponent
+      },
+      {
+        path: 'metas',
+        component: MetasComponent
       },
       {
         path: "cadeiras",
@@ -43,7 +56,7 @@ import { CriarCadeiraComponent } from './criar-cadeira/criar-cadeira.component'
       }
     ])
   ],
-  providers: [AlunoService, CadeiraService],
+  providers: [AlunoService, ProfService, CadeiraService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

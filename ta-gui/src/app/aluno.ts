@@ -3,6 +3,8 @@ export class Aluno {
   cpf: string;
   email: string;
   metas: Map<string,string>;
+  dt_nasc: string;
+  senha: string;
 
   constructor() {
     this.clean();
@@ -12,6 +14,8 @@ export class Aluno {
     this.nome = "";
     this.cpf = "";
     this.email = "";
+    this.dt_nasc = "";
+    this.senha = "";
     this.metas = new Map<string,string>();
   }
 
@@ -20,6 +24,8 @@ export class Aluno {
     aluno.nome = this.nome;
     aluno.cpf = this.cpf;
     aluno.email = this.email;
+    aluno.dt_nasc = this.dt_nasc;
+    aluno.senha = this.senha;
     aluno.metas = this.cloneMetas();
     return aluno;
   }

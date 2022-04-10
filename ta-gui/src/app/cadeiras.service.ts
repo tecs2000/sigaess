@@ -99,6 +99,13 @@ export class CadeiraService {
     return result;
   }
 
+  getCadeira(nome: string): Cadeira | null {
+    var result = this.cadeiras.find(a => {
+      a.nome_disciplina == nome;
+    })
+    return result;
+  }
+
   getDepartamentos(): string[] {
     var result: string[] = [];
     this.departamentos.forEach(d => {

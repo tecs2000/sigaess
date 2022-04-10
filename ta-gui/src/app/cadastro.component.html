@@ -4,7 +4,7 @@
 
 <h4>Selecione o tipo de usuário:</h4>
 <body ng-controller="user as us">
-   <select name="usertype" ng-model="us.escolha">
+   <select name="usertype" ng-model="us.escolha" [(ngModel)]="typeAccount">
       <option value="prof">Professor</option>
       <option value="aluno">Aluno</option>
    </select>
@@ -32,7 +32,6 @@
 </tr>
 </table>
 
-<button class="btcad" (click)="criarAluno(aluno)">Salvar</button>
-
+<button class="btcad" (click)="criarAluno(aluno, typeAccount)">Salvar</button>
 
 </html>

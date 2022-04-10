@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { Aluno } from './aluno';
 import { AlunoService } from './aluno.service';
+import { ProfService } from './prof.service';
+import { Professor } from './professor';
 
 @Component({
   selector: 'app-root',
@@ -11,20 +13,36 @@ import { AlunoService } from './aluno.service';
 })
 export class CadastroComponent implements OnInit {
    
-  constructor(private alunoService: AlunoService) {}
+  constructor(private alunoService: AlunoService, private profService: ProfService) {}
 
   aluno: Aluno = new Aluno();
   alunos: Aluno[];
   cpfduplicado: boolean = false;
+  typeAccount: string;
 
-  criarAluno(a: Aluno): void {
-    if (this.alunoService.criar(a)) {
-      this.alunos.push(a);
-      this.aluno = new Aluno();
-      alert("Cadastro realizado. Faça Login.")
-    } else {
-      alert("Esse CPF já foi cadastrado. Tente Novamente")
-      this.cpfduplicado = true;
+  criarAluno(a: Aluno, typeAccount: string): void {
+    if (typeAccount == "aluno") {
+      if (this.alunoService.criar(a)) {
+        this.alunos.push(a);
+        this.aluno = new Aluno();
+        alert("Cadastro realizado. Faça Login.")
+      } else {
+        alert("Esse CPF já foi cadastrado. Tente Novamente")
+        this.cpfduplicado = true;
+      }
+    } else if (typeAccount == "prof") {
+      var professor = new Professor();
+      professor.nome = this.aluno.nome;
+      professor.cpf = this.aluno.cpf;
+      professor.dt_nasc = this.aluno.dt_nasc;
+      professor.senha = this.aluno.senha;
+      if (this.profService.criar(professor)) {
+        this.aluno = new Aluno();
+        alert("Cadastro realizado. Faça Login.")
+      } else {
+        alert("Esse CPF já foi cadastrado. Tente Novamente")
+        this.cpfduplicado = true;
+      }
     }
   }
 

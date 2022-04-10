@@ -16,4 +16,8 @@ export class LoginService {
   getType(): string {
     return this.type;
   }
+
+  getAccount(): Professor {
+    return this.account;
+  }
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cadeira } from '../cadeiras';
 import { CadeiraService } from '../cadeiras.service';
+import { LoginService } from '../login.service';
+import { Professor } from '../professor';
 
 @Component({
   selector: 'app-criar-cadeira',
@@ -10,8 +12,10 @@ import { CadeiraService } from '../cadeiras.service';
 })
 export class CriarCadeiraComponent implements OnInit {
 
-  constructor(private _route: Router, private cadeirasService: CadeiraService) { }
+  constructor(private _route: Router, private cadeirasService: CadeiraService, 
+    private loginService: LoginService) { }
 
+  professor: Professor;
   cadeira: Cadeira = new Cadeira();
   departamentos: string[] = [];
   mensagem_erro_adicionar: string = "";
@@ -54,7 +58,8 @@ export class CriarCadeiraComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.departamentos = this.cadeirasService.getDepartamentos()
+    this.departamentos = this.cadeirasService.getDepartamentos();
+    this.professor = this.loginService.getAccount()
   }
 
 }

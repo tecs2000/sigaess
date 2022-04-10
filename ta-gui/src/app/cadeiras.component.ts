@@ -56,4 +56,11 @@ export class CadeirasComponent implements OnInit {
     }
     return false;
   }
+
+  checkIfProf(accountType: string): boolean {
+    if (accountType == "Professor") {
+      return true;
+    }
+    return false;
+  }
 }

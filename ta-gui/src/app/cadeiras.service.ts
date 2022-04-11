@@ -41,28 +41,31 @@ export class CadeiraService {
     } if (!this.validCargHoraria(cadeira.carga_horaria)) {
       return "Horário inválido";
     } if (!this.validHorarios(cadeira)) {
-      return "Este horário já foi preenchido, tente novamente";
+      return "Estes horários já foram preenchidos, tente novamente";
     }
     return "ok";
   }
 
-  
-
   validHorarios(novaCadeira: Cadeira): boolean {
-    this.cadeiras.forEach(function(cadeiraCadastrada) {
-      if(cadeiraCadastrada.nome_professor == novaCadeira.nome_professor) 
-        for (let entry of cadeiraCadastrada.horarios.entries()){ 
-          if (eqSet(novaCadeira.horarios.get(entry[0]), entry[1])) return false
+    for (let cadeira of this.cadeiras){
+      if (cadeira.nome_professor == novaCadeira.nome_professor){
+        for (var key in cadeira.horarios){ 
+          var alocacaoAtual = cadeira.horarios[key];
+          var novaAlocacao = novaCadeira.horarios[key];
+          if (equal(alocacaoAtual, novaAlocacao) || interseccao(alocacaoAtual, novaAlocacao)) {
+            return false;
+          }
         }
-      })      
-    return true
+      }
+    }
+    return true;
   }
   
   validCargHoraria(num: number): boolean {
     if (!Number.isInteger(num) || num <= 0) {
-      return false
+      return false;
     }
-    return true
+    return true;
   }
 
   validNomeDisc(nome_disciplina: string): boolean {
@@ -74,9 +77,9 @@ export class CadeiraService {
 
   validNomeProf(nome_professor: string): boolean {
     if (nome_professor.replace(/\s/g, '') == "") {
-      return false
+      return false;
     }
-    return true
+    return true;
   }
 
   validNumVagas(num_str: string) {
@@ -85,9 +88,9 @@ export class CadeiraService {
     } 
     const num = Number(num_str);
     if (!Number.isInteger(num) || num <= 0) {
-      return false
+      return false;
     }
-    return true
+    return true;
   }
 
   cadeiraNaoCadastrada(nome_disciplina: string): boolean {
@@ -137,9 +140,21 @@ export class CadeiraService {
 }
 
 
-function eqSet(arg0: Set<number>, arg1: Set<number>) {
+function equal(arg0: Set<number>, arg1: Set<number>) {
   if (arg0.size !== arg1.size) return false;
+  if (arg0.size == 0 &&  arg1.size == 0) return false;
   for (var a of arg0) if (!arg1.has(a)) return false;
   return true;
 }
+
+function interseccao(setA, setB): boolean {
+  var _interseccao = new Set();
+  for (var elem of setB) {
+      if (setA.has(elem)) {
+          _interseccao.add(elem);
+      }
+  }
+  return _interseccao.size !== 0;
+}
+
 

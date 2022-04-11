@@ -1,5 +1,3 @@
-Feature 5
-
 Scenario: Disciplina cadastrada sem conflito
     Given: Estou na tela de disciplinas cadastradas
     And: Estou logado como "Professor"
@@ -31,6 +29,6 @@ Scenario: Cadastro de disciplinas para a mesma turma
 Scenario: Cadastro de disciplinas com mesmos nome e turma  
     Given: Estou na tela de disciplinas cadastradas
     And: Estou logado como "Professor"
-    And: Vejo apenas uma disciplina cadastradas, chamada "Ecologia", com horário "segunda 8-10 e sexta 10-12" e turma "18-A"
-    When: Eu tento cadastrar uma nova disciplina chamada "Ecologia", com horário "terça 10-12 e quinta 8-10" e turma "18-A"
-    Then: A nova disciplina de nome "Ecologia" é corretamente armazenada e o sistema possui duas disciplinas com mesmos nome e turma
+    And: Vejo apenas uma disciplina cadastradas, chamada "Artes", com horário "segunda 8-10 e sexta 10-12" e turma "18-A"
+    When: Eu tento cadastrar uma nova disciplina chamada "Artes", com horário "terça 10-12 e quinta 8-10" e turma "18-A"
+    Then: A nova disciplina de nome "Artes" é corretamente armazenada e o sistema possui duas disciplinas para a turma "18-A"

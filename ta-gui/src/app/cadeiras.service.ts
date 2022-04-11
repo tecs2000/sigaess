@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { Cadeira } from "./cadeiras";
 
 @Injectable()
@@ -36,20 +35,37 @@ export class CadeiraService {
     } if (!this.validNomeDisc(cadeira.nome_disciplina)) {
       return "Nome da Disciplina Inválido";
     } if (!this.validNomeProf(cadeira.nome_professor)) {
-      return "Nome de Professor Inválido"
+      return "Nome de Professor Inválido";
     } if (!this.validNumVagas(cadeira.numero_vagas)) {
       return "Numero de Vagas Inválido";
     } if (!this.validCargHoraria(cadeira.carga_horaria)) {
-      return "Horário inválido"
+      return "Horário inválido";
+    } if (!this.validHorarios(cadeira)) {
+      return "Estes horários já foram preenchidos, tente novamente";
     }
     return "ok";
   }
 
+  validHorarios(novaCadeira: Cadeira): boolean {
+    for (let cadeira of this.cadeiras){
+      if (cadeira.nome_professor == novaCadeira.nome_professor){
+        for (var key in cadeira.horarios){ 
+          var alocacaoAtual = cadeira.horarios[key];
+          var novaAlocacao = novaCadeira.horarios[key];
+          if (equal(alocacaoAtual, novaAlocacao) || interseccao(alocacaoAtual, novaAlocacao)) {
+            return false;
+          }
+        }
+      }
+    }
+    return true;
+  }
+  
   validCargHoraria(num: number): boolean {
     if (!Number.isInteger(num) || num <= 0) {
-      return false
+      return false;
     }
-    return true
+    return true;
   }
 
   validNomeDisc(nome_disciplina: string): boolean {
@@ -61,9 +77,9 @@ export class CadeiraService {
 
   validNomeProf(nome_professor: string): boolean {
     if (nome_professor.replace(/\s/g, '') == "") {
-      return false
+      return false;
     }
-    return true
+    return true;
   }
 
   validNumVagas(num_str: string) {
@@ -72,9 +88,9 @@ export class CadeiraService {
     } 
     const num = Number(num_str);
     if (!Number.isInteger(num) || num <= 0) {
-      return false
+      return false;
     }
-    return true
+    return true;
   }
 
   cadeiraNaoCadastrada(nome_disciplina: string): boolean {
@@ -122,3 +138,23 @@ export class CadeiraService {
     return result;
   }
 }
+
+
+function equal(arg0: Set<number>, arg1: Set<number>) {
+  if (arg0.size !== arg1.size) return false;
+  if (arg0.size == 0 &&  arg1.size == 0) return false;
+  for (var a of arg0) if (!arg1.has(a)) return false;
+  return true;
+}
+
+function interseccao(setA, setB): boolean {
+  var _interseccao = new Set();
+  for (var elem of setB) {
+      if (setA.has(elem)) {
+          _interseccao.add(elem);
+      }
+  }
+  return _interseccao.size !== 0;
+}
+
+

@@ -72,5 +72,14 @@ export class Cadeira {
       this.carga_horaria -= 1;
     }
   }
+
+  addAluno(aluno: Aluno): boolean {
+    var result: boolean = false;
+    if (this.alunos.size < Number(this.numero_vagas)) {
+      this.alunos.add(aluno);
+      result = true;
+    }
+    return result;
+  }
 }
   

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Aluno } from './aluno';
 import { Cadeira } from "./cadeiras";
 
 @Injectable()
@@ -135,6 +136,18 @@ export class CadeiraService {
     this.departamentos.forEach(d => {
       result.set(d, this.getCadeiras(d)) ;
     })
+    return result;
+  }
+
+  addAluno(cadeira: Cadeira, aluno: Aluno): boolean {
+    cadeira = cadeira.clone();
+    var result = false;
+    for (let c of this.cadeiras) {
+      if (c.nome_disciplina == cadeira.nome_disciplina) {
+        result = c.addAluno(aluno);
+        return result;
+      }
+    }
     return result;
   }
 }

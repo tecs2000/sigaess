@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Aluno } from './aluno';
-import { AlunoService } from './aluno.service';
-import { LoginService } from './login.service';
+import { Aluno } from '../aluno';
+import { AlunoService } from '../aluno.service';
+import { LoginService } from '../login.service';
 
 @Component({  
   selector: 'app-root',

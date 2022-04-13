@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Aluno } from './aluno';
-import { AlunoService } from './aluno.service';
-import { ProfService } from './prof.service';
-import { Professor } from './professor';
+import { Aluno } from '../aluno';
+import { AlunoService } from '../aluno.service';
+import { ProfService } from '../prof.service';
+import { Professor } from '../professor';
 
 @Component({
   selector: 'app-root',

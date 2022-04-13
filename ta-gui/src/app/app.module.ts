@@ -5,14 +5,14 @@ import { RouterModule }   from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MetasComponent } from './metas.component';
-import { AlunosComponent } from './alunos.component';
+import { MetasComponent } from './metas/metas.component';
+import { AlunosComponent } from './alunos/alunos.component';
 import { AlunoService } from './aluno.service';
-import { CadeirasComponent } from './cadeiras.component';
+import { CadeirasComponent } from './cadeiras/cadeiras.component';
 import { CadeiraService} from './cadeiras.service';
 import { CriarCadeiraComponent } from './criar-cadeira/criar-cadeira.component'
-import { ProfComponent } from './prof.component';
-import { CadastroComponent } from './cadastro.component';
+import { ProfComponent } from './prof/prof.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
 import { ProfService } from './prof.service';
 import { LoginService } from './login.service';
 

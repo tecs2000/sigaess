@@ -16,6 +16,7 @@ export class CadeirasComponent implements OnInit {
   constructor(private cadeirasService: CadeiraService, private loginService: LoginService) {}
   
   accountType: string;
+  account: Aluno | Professor = undefined;
   cadeiras: Cadeira[];
   departamentos: string[];
 
@@ -29,6 +30,7 @@ export class CadeirasComponent implements OnInit {
     this.cadeiras = this.cadeirasService.getCadeiras();
     this.departamentos = this.cadeirasService.getDepartamentos();
     this.accountType = this.loginService.getType();
+    this.account = this.loginService.getAccount();
   }
 
   getTableLine(k: string): Cadeira[]{

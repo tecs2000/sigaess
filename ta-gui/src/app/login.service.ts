@@ -6,7 +6,7 @@ import { Professor } from './professor';
 @Injectable()
 export class LoginService {
   type: string = '';
-  account: Professor | Aluno;
+  account: Professor | Aluno | null = null;
 
   login(account: Professor | Aluno, type: string) {
     this.account = account;
@@ -17,7 +17,7 @@ export class LoginService {
     return this.type;
   }
 
-  getAccount(): Professor {
+  getAccount(): Professor | Aluno | null {
     return this.account;
   }
 }

@@ -25,7 +25,7 @@ export class AlunosComponent implements OnInit {
       if (this.alunoService.checksenha(a.cpf,a.senha)){
         alert("Senha inválida. Tente novamente.")
       } else {
-        this.loginService.login(a, "Aluno");
+        this.loginService.login(this.alunoService.getAlunoCPFPass(a.cpf, a.senha), "Aluno");
         //tela de entrada
         alert("Login efetuado! Seja bem vindo!");
         this._route.navigate(['cadeiras']);
@@ -34,7 +34,7 @@ export class AlunosComponent implements OnInit {
   }
   
   onMove(): void {
-      this.cpfduplicado = false;
+    this.cpfduplicado = false;
   }
 
   ngOnInit(): void {

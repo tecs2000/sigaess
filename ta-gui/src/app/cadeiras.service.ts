@@ -147,7 +147,7 @@ function equal(arg0: Set<number>, arg1: Set<number>) {
   return true;
 }
 
-function interseccao(setA, setB): boolean {
+function interseccao(setA: Set<number>, setB: Set<number>): boolean {
   var _interseccao = new Set();
   for (var elem of setB) {
       if (setA.has(elem)) {

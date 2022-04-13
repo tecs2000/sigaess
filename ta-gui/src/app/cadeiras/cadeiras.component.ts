@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
-import { Aluno } from './aluno';
+import { Aluno } from '../aluno';
 
-import { Cadeira } from './cadeiras';
-import { CadeiraService } from './cadeiras.service';
-import { LoginService } from './login.service';
-import { Professor } from './professor';
+import { Cadeira } from '../cadeiras';
+import { CadeiraService } from '../cadeiras.service';
+import { LoginService } from '../login.service';
+import { Professor } from '../professor';
 
 @Component({  
   selector: 'cadeiras',
@@ -16,6 +16,7 @@ export class CadeirasComponent implements OnInit {
   constructor(private cadeirasService: CadeiraService, private loginService: LoginService) {}
   
   accountType: string;
+  account: Aluno | Professor = undefined;
   cadeiras: Cadeira[];
   departamentos: string[];
 
@@ -29,6 +30,7 @@ export class CadeirasComponent implements OnInit {
     this.cadeiras = this.cadeirasService.getCadeiras();
     this.departamentos = this.cadeirasService.getDepartamentos();
     this.accountType = this.loginService.getType();
+    this.account = this.loginService.getAccount();
   }
 
   getTableLine(k: string): Cadeira[]{

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { Aluno } from './aluno';
-import { AlunoService } from './aluno.service';
-import { ProfService } from './prof.service';
-import { Professor } from './professor';
+import { Aluno } from '../aluno';
+import { AlunoService } from '../aluno.service';
+import { ProfService } from '../prof.service';
+import { Professor } from '../professor';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ import { Professor } from './professor';
 })
 export class CadastroComponent implements OnInit {
    
-  constructor(private alunoService: AlunoService, private profService: ProfService) {}
+  constructor(private _route: Router, private alunoService: AlunoService, private profService: ProfService) {}
 
   aluno: Aluno = new Aluno();
   alunos: Aluno[];
@@ -26,6 +27,7 @@ export class CadastroComponent implements OnInit {
         this.alunos.push(a);
         this.aluno = new Aluno();
         alert("Cadastro realizado. Faça Login.")
+        this._route.navigate(['professores']);
       } else {
         alert("Esse CPF já foi cadastrado. Tente Novamente")
         this.cpfduplicado = true;
@@ -39,6 +41,7 @@ export class CadastroComponent implements OnInit {
       if (this.profService.criar(professor)) {
         this.aluno = new Aluno();
         alert("Cadastro realizado. Faça Login.")
+        this._route.navigate(['professores']);
       } else {
         alert("Esse CPF já foi cadastrado. Tente Novamente")
         this.cpfduplicado = true;

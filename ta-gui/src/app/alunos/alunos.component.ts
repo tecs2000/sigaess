@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Aluno } from './aluno';
-import { AlunoService } from './aluno.service';
-import { LoginService } from './login.service';
+import { Aluno } from '../aluno';
+import { AlunoService } from '../aluno.service';
+import { LoginService } from '../login.service';
 
 @Component({  
   selector: 'app-root',
@@ -25,7 +25,7 @@ export class AlunosComponent implements OnInit {
       if (this.alunoService.checksenha(a.cpf,a.senha)){
         alert("Senha inválida. Tente novamente.")
       } else {
-        this.loginService.login(a, "Aluno");
+        this.loginService.login(this.alunoService.getAlunoCPFPass(a.cpf, a.senha), "Aluno");
         //tela de entrada
         alert("Login efetuado! Seja bem vindo!");
         this._route.navigate(['cadeiras']);
@@ -34,7 +34,7 @@ export class AlunosComponent implements OnInit {
   }
   
   onMove(): void {
-      this.cpfduplicado = false;
+    this.cpfduplicado = false;
   }
 
   ngOnInit(): void {

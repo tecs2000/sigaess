@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { Professor } from './professor';
-import { ProfService } from './prof.service';
-import { LoginService } from './login.service';
+import { Professor } from '../professor';
+import { ProfService } from '../prof.service';
+import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -25,7 +25,7 @@ export class ProfComponent implements OnInit {
       if (this.profService.checksenha(a.cpf,a.senha)){
         alert("Senha inválida. Tente novamente.");
       } else {
-        this.loginService.login(a, "Professor");
+        this.loginService.login(this.profService.getProfCPFPass(a.cpf, a.senha), "Professor");
         //tela de entrada
         alert("Login efetuado! Seja bem vindo!");
         this._route.navigate(['cadeiras']);

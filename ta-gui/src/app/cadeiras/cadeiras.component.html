@@ -1,4 +1,5 @@
 <html>
+  <h2 *ngIf="account != undefined">Bem vindo {{account.nome}}!</h2>
   <div align="center">
     <table *ngIf="checkIfProf(accountType)">
       <td><a routerLink="/criarCadeira"><button>Adicionar</button></a></td>

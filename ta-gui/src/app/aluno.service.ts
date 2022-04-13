@@ -40,4 +40,8 @@ export class AlunoService {
     }
     return result;
   }
+
+  getAlunoCPFPass(cpf: string, senha: string): Aluno {
+    return this.alunos.find(a => a.cpf == cpf && a.senha == senha);
+  }
 }

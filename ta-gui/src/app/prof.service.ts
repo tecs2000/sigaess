@@ -31,4 +31,8 @@ export class ProfService {
     }
     return result;
   }
+  
+  getProfCPFPass(cpf: string, senha: string): Professor {
+    return this.profs.find(a => a.cpf == cpf && a.senha == senha);
+  }
 }

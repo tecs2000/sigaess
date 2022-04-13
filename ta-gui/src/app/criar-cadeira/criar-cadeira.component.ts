@@ -11,7 +11,6 @@ import { Professor } from '../professor';
   styleUrls: ['./criar-cadeira.component.css']
 })
 export class CriarCadeiraComponent implements OnInit {
-
   constructor(private _route: Router, private cadeirasService: CadeiraService, 
     private loginService: LoginService) { }
 
@@ -54,6 +53,10 @@ export class CriarCadeiraComponent implements OnInit {
   ngOnInit(): void {
     this.departamentos = this.cadeirasService.getDepartamentos();
     this.professor = this.loginService.getAccount();
+    if (!this.professor || this.loginService.getType() == "Aluno") {
+      this._route.navigate(['professores']);
+    }
+    this.cadeira.nome_professor = this.professor.nome;
   }
 
 }

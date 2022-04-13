@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Aluno } from './aluno';
 import { Cadeira } from "./cadeiras";
 
 @Injectable()
@@ -137,6 +138,18 @@ export class CadeiraService {
     })
     return result;
   }
+
+  addAluno(cadeira: Cadeira, aluno: Aluno): boolean {
+    cadeira = cadeira.clone();
+    var result = false;
+    for (let c of this.cadeiras) {
+      if (c.nome_disciplina == cadeira.nome_disciplina) {
+        result = c.addAluno(aluno);
+        return result;
+      }
+    }
+    return result;
+  }
 }
 
 
@@ -147,7 +160,7 @@ function equal(arg0: Set<number>, arg1: Set<number>) {
   return true;
 }
 
-function interseccao(setA, setB): boolean {
+function interseccao(setA: Set<number>, setB: Set<number>): boolean {
   var _interseccao = new Set();
   for (var elem of setB) {
       if (setA.has(elem)) {

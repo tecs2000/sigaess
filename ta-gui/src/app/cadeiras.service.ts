@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Aluno } from './aluno';
-import { Cadeira } from "./cadeiras";
+import { Aluno } from '..//../../common/aluno';
+import { Cadeira } from "../../../common/cadeiras";
 
 @Injectable()
 export class CadeiraService {

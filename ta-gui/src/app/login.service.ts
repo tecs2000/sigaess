@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Aluno } from './aluno';
+import { Aluno } from '../../../common/aluno';
 
-import { Professor } from './professor';
+import { Professor } from '../../../common/professor';
 
 @Injectable()
 export class LoginService {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Aluno } from './aluno';
+import { Aluno } from '../../../common/aluno';
 
 @Injectable()
 export class AlunoService {
@@ -22,11 +22,6 @@ export class AlunoService {
 
   atualizar(aluno: Aluno): void {
     aluno = aluno.clone();
-    for (let a of this.alunos) {
-        if (a.cpf == aluno.cpf) {
-           a.metas = aluno.metas;
-        }
-    }
   }
 
   checksenha(cpf: string, senha: string): boolean {

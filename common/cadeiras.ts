@@ -7,7 +7,7 @@ export class Cadeira {
   carga_horaria: number;
   departamento_ofertante: string;
   horarios: Map<string, Set<number>>;
-  alunos: Set<Aluno>;
+  alunos: Set<string>;
 
   constructor() {
     this.clean();
@@ -20,7 +20,7 @@ export class Cadeira {
     this.carga_horaria = 0;
     this.departamento_ofertante = "";
     this.horarios = this.horariosInitial();
-    this.alunos = new Set<Aluno>();
+    this.alunos = new Set<string>();
   }
 
   clone(): Cadeira {
@@ -54,8 +54,8 @@ export class Cadeira {
     return horarios;
   }
 
-  cloneAlunos(): Set<Aluno> {
-    var alunos: Set<Aluno> = new Set(JSON.parse(JSON.stringify([...this.alunos])));
+  cloneAlunos(): Set<string> {
+    var alunos: Set<string> = new Set(JSON.parse(JSON.stringify([...this.alunos])));
     return alunos;
   }
   
@@ -76,7 +76,7 @@ export class Cadeira {
   addAluno(aluno: Aluno): boolean {
     var result: boolean = false;
     if (this.alunos.size < Number(this.numero_vagas)) {
-      this.alunos.add(aluno);
+      this.alunos.add(aluno.cpf);
       result = true;
     }
     return result;

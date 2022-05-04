@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
-import { Aluno } from '../aluno';
+import { Aluno } from '../../../../common/aluno';
 
-import { Cadeira } from '../cadeiras';
+import { Cadeira } from '../../../../common/cadeiras';
 import { CadeiraService } from '../cadeiras.service';
 import { LoginService } from '../login.service';
-import { Professor } from '../professor';
+import { Professor } from '../../../../common/professor';
 
 @Component({  
   selector: 'cadeiras',
@@ -44,6 +44,7 @@ export class CadeirasComponent implements OnInit {
     for (var i = 0; i < this.cadeiras.length; ++i) {
       if (this.cadeiras[i].nome_disciplina == nome) {
         this.cadeira = this.cadeiras[i].clone();
+        return;
       }
     }
   }
@@ -52,17 +53,23 @@ export class CadeirasComponent implements OnInit {
     return typeof a;
   }
 
-  checkIfAluno(accountType: string): boolean {
-    if (accountType == "Aluno") {
+  checkIfAluno(account: Aluno | Professor): boolean {
+    if (account instanceof Aluno) {
       return true;
     }
     return false;
   }
 
-  checkIfProf(accountType: string): boolean {
-    if (accountType == "Professor") {
+  checkIfProf(account: Aluno | Professor): boolean {
+    if (account instanceof Professor) {
       return true;
     }
     return false;
+  }
+
+  matricula(cadeira: Cadeira, aluno: Aluno | Professor) {
+    if (aluno instanceof Aluno) {
+      this.cadeirasService.addAluno(cadeira, aluno);
+    }
   }
 }

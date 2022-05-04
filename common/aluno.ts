@@ -26,4 +26,12 @@ export class Aluno {
       aluno.senha = this.senha;
       return aluno;
     }
+
+    copyFrom(from: Aluno): void {
+      this.nome = from.nome;
+      this.cpf = from.cpf;
+      this.email = from.email;
+      this.dt_nasc = from.dt_nasc;
+      this.senha = from.senha;
+    }
 }

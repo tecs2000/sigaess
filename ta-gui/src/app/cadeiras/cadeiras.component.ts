@@ -28,7 +28,14 @@ export class CadeirasComponent implements OnInit {
 
   ngOnInit(): void {
     this.cadeiras = this.cadeirasService.getCadeiras();
-    this.departamentos = this.cadeirasService.getDepartamentos();
+    this.cadeirasService.getDepartamentos().subscribe(
+      ar => {
+        if (ar) {
+          this.departamentos = ar;
+        }
+      },
+      msg => { alert(msg.message); }
+    );
     this.accountType = this.loginService.getType();
     this.account = this.loginService.getAccount();
   }

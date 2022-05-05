@@ -51,7 +51,14 @@ export class CriarCadeiraComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.departamentos = this.cadeirasService.getDepartamentos();
+    this.cadeirasService.getDepartamentos().subscribe(
+      ar => {
+        if (ar) {
+          this.departamentos = ar;
+        }
+      },
+      msg => { alert(msg.message); }
+    );
     this.professor = this.loginService.getAccount();
     if (!this.professor || this.loginService.getType() == "Aluno") {
       this._route.navigate(['professores']);

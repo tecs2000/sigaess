@@ -4,10 +4,11 @@ import bodyParser = require("body-parser");
 import {Aluno} from '../common/aluno';
 import {CadastroDeAlunos} from './cadastrodealunos';
 import { CadastroDeProfs } from './cadastrodeprofs';
+import { Professor } from '../common/professor';
 
 var taserver = express();
 
-var alunos: CadastroDeAlunos = new CadastroDeAlunos();
+
 var profs: CadastroDeProfs = new CadastroDeProfs();
 
 taserver.use(bodyParser.json());
@@ -16,6 +17,10 @@ taserver.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+// Requisições de aluno
+
+var alunos: CadastroDeAlunos = new CadastroDeAlunos();
 
 taserver.get('/alunos', function (req, res) {
   var aluno: string = JSON.stringify(alunos.getAlunos());
@@ -42,29 +47,30 @@ taserver.put('/aluno', function (req: express.Request, res: express.Response) {
   }
 })
 
+// Requisições de Professor
 
 taserver.get('/professores', function (req, res) {
-  var aluno: string = JSON.stringify(alunos.getAlunos());
-  res.send(aluno);
+  var professor: string = JSON.stringify(profs.getprofessors());
+  res.send(professor);
 })
 
 taserver.post('/professor', function (req: express.Request, res: express.Response) {
-  var aluno: Aluno = <Aluno> req.body; //verificar se é mesmo Aluno!
-  aluno = alunos.criar(aluno);
-  if (aluno) {
-    res.send({"success": "O aluno foi cadastrado com sucesso"});
+  var professor: Professor = <Professor> req.body; //verificar se é mesmo professor!
+  professor = profs.criar(professor);
+  if (professor) {
+    res.send({"success": "O professor foi cadastrado com sucesso"});
   } else {
-    res.send({"failure": "O aluno não pode ser cadastrado"});
+    res.send({"failure": "O professor não pode ser cadastrado"});
   }
 })
 
 taserver.put('/professor', function (req: express.Request, res: express.Response) {
-  var aluno: Aluno = <Aluno> req.body;
-  aluno = alunos.atualizar(aluno);
-  if (aluno) {
-    res.send({"success": "O aluno foi atualizado com sucesso"});
+  var professor: Professor = <Professor> req.body;
+  professor = profs.atualizar(professor);
+  if (professor) {
+    res.send({"success": "O professor foi atualizado com sucesso"});
   } else {
-    res.send({"failure": "O aluno não pode ser atualizado"});
+    res.send({"failure": "O professor não pode ser atualizado"});
   }
 })
 

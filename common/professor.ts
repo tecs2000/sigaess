@@ -23,4 +23,11 @@ export class Professor {
     professor.senha = this.senha;
     return professor;
   }
+
+  copyFrom(from: Professor): void {
+    this.nome = from.nome;
+    this.cpf = from.cpf;
+    this.dt_nasc = from.dt_nasc;
+    this.senha = from.senha;
+  }
 }

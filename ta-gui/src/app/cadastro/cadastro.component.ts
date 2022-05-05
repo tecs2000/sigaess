@@ -41,14 +41,20 @@ export class CadastroComponent implements OnInit {
       professor.cpf = this.aluno.cpf;
       professor.dt_nasc = this.aluno.dt_nasc;
       professor.senha = this.aluno.senha;
-      if (this.profService.criar(professor)) {
-        this.aluno = new Aluno();
-        alert("Cadastro realizado. Faça Login.")
-        this._route.navigate(['professores']);
-      } else {
-        alert("Esse CPF já foi cadastrado. Tente Novamente")
-        this.cpfduplicado = true;
-      }
+      this.profService.criar(professor)
+              .subscribe(
+                ar => {
+                  if (ar) {
+                    this.aluno = new Aluno();
+                    alert("Cadastro realizado. Faça Login.")
+                    this._route.navigate(['professores']);
+                  } else {
+                    alert("Esse CPF já foi cadastrado. Tente Novamente")
+                    this.cpfduplicado = true;
+                  } 
+                },
+                msg => { alert(msg.message); }
+              );
     }
   }
 

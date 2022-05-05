@@ -19,7 +19,7 @@ export class MetasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.alunos = this.alunoService.getAlunos();
+    // this.alunos = this.alunoService.getAlunos();
   }
 
 }

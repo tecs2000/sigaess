@@ -1,4 +1,4 @@
-<html (mousemove)="onMove()" ng-app="app">
+<html ng-app="app">
 
 <h3 class="msg">Digite suas informações:</h3>
 
@@ -24,11 +24,15 @@
 </tr>
 <tr>
    <td><label>Data de nascimento</label></td>
-   <td><input [(ngModel)]="aluno.dt_nasc" ></td>
+   <td><input type="date" [(ngModel)]="aluno.dt_nasc" ></td>
+</tr>
+<tr>
+   <td><label>Email</label></td>
+   <td><input [(ngModel)]="aluno.email" ></td>
 </tr>
 <tr>
    <td><label>Senha</label></td>
-   <td><input [(ngModel)]="aluno.senha" ></td>
+   <td><input type="password" minlength="8" required [(ngModel)]="aluno.senha" ></td>
 </tr>
 </table>
 

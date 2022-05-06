@@ -39,7 +39,6 @@ export class CadastroDeCadeiras {
     // COMEÇO DE CHECAGENS INTERNAS
 
     checkCriar(cadeira: Cadeira): string {
-        return 'ok'
         if (!this.cadeiraNaoCadastrada(cadeira.nome_disciplina)) {
             return "Cadeira Já Cadastrada";
         } if (!this.validNomeDisc(cadeira.nome_disciplina)) {

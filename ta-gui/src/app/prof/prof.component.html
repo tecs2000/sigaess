@@ -1,4 +1,4 @@
-<html (mousemove)="onMove()">
+<html>
 
 <h3 class="msg">Bem vindo, professor!</h3>
 
@@ -12,7 +12,7 @@
 </tr>
 <tr>
    <td><label>Senha </label></td>
-   <td><input [(ngModel)]="prof.senha" ></td>
+   <td><input type="password" [(ngModel)]="prof.senha" ></td>
 </tr>
 <tr>
    <td><button class="btlogin" (click)="logarProf(prof)">Fazer Login</button></td>
@@ -28,4 +28,3 @@
 <router-outlet></router-outlet>
 
 </html>
-

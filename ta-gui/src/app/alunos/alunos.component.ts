@@ -17,7 +17,9 @@ export class AlunosComponent implements OnInit {
   cpfduplicado: boolean = false;
 
   logarAluno(a: Aluno): void {
-    this.loginService.login(this.aluno, "Aluno");
+    var aluno = new Aluno();
+    aluno.nome = "Aluno"
+    this.loginService.login(aluno, "Aluno");
     //tela de entrada
     alert("Login efetuado! Seja bem vindo!");
     this._route.navigate(['cadeiras']);

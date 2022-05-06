@@ -2,7 +2,7 @@ import { Aluno } from '../common/aluno';
 import { Cadeira } from '../common/cadeiras';
 
 export class CadastroDeCadeiras {
-    cadeiras: Cadeira[];
+    cadeiras: Cadeira[] = [];
     departamentos: Set<string> = new Set<string>(["CAC",
                                                 "CB",
                                                 "CCEN",
@@ -16,9 +16,11 @@ export class CadastroDeCadeiras {
                                                 "CTG"]);
 
     criar(cadeira: Cadeira): Cadeira | string {
-        cadeira = cadeira.clone();
+        var result = null;
         var result_check = this.checkCriar(cadeira);
         if (result_check == "ok") {
+            result = new Cadeira();
+            result.copyFromJSON(cadeira);
             this.cadeiras.push(cadeira);
             if (!this.departamentos.has(cadeira.departamento_ofertante)) {
                 this.departamentos.add(cadeira.departamento_ofertante);
@@ -27,10 +29,17 @@ export class CadastroDeCadeiras {
         }
         return result_check;
     }
+
+    atualizar(cadeira: Cadeira): Cadeira {
+        var result: Cadeira = this.cadeiras.find(a => a.nome_disciplina == cadeira.nome_disciplina);
+        if (result) result.copyFrom(cadeira);
+        return result
+    }
       
     // COMEÇO DE CHECAGENS INTERNAS
 
     checkCriar(cadeira: Cadeira): string {
+        return 'ok'
         if (!this.cadeiraNaoCadastrada(cadeira.nome_disciplina)) {
             return "Cadeira Já Cadastrada";
         } if (!this.validNomeDisc(cadeira.nome_disciplina)) {
@@ -84,7 +93,7 @@ export class CadastroDeCadeiras {
     }
 
     validNumVagas(num_str: string) {
-        if (Number.isNaN(num_str)) {
+        if (Number.isNaN(+num_str)) {
             return false;
         } 
         const num = Number(num_str);
@@ -100,14 +109,8 @@ export class CadastroDeCadeiras {
 
     // TERMINAÇÃO DE CHECAGENS INTERNAS
     
-    getCadeiras(departamento_ofertante=""): Cadeira[] {
-        var result: Cadeira[] = [];
-        for (let c of this.cadeiras) {
-            if (departamento_ofertante=="" || c.departamento_ofertante==departamento_ofertante) {
-            result.push(c.clone());
-            }
-        }
-        return result;
+    getCadeiras(): Cadeira[] {
+        return this.cadeiras;
     }
 
     getCadeira(nome: string): Cadeira | null {

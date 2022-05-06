@@ -22,12 +22,23 @@ export class CriarCadeiraComponent implements OnInit {
   horarios: Array<number> = Array(24).fill(-1).map((x,i)=>i);
 
   criarCadeira(c: Cadeira): void {
+    console.log(JSON.stringify(c))
     var result_criar = this.cadeirasService.criar(c)
-    if (typeof result_criar === "object") {
-      this.cadeira = new Cadeira();
-      this._route.navigate(['cadeiras']);
-    } else 
-      alert(result_criar)
+                        .subscribe(
+                          ar => {
+                            if (ar) {
+                              if (typeof result_criar === "object") {
+                                this.cadeira = new Cadeira();
+                                this._route.navigate(['cadeiras']);
+                              } else 
+                                alert(result_criar)
+                            } else {
+                              alert("Esse CPF já foi cadastrado. Tente Novamente")
+                            } 
+                          },
+                          msg => { alert(msg.message); }
+                        );
+    
   }
 
   toggleHorario(cadeira: Cadeira, weekday:string, horario: number) {

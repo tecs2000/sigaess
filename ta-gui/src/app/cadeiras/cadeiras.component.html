@@ -7,13 +7,13 @@
     <table>
       <tr>
         <td>
-          <select [(ngModel)]="departamento">
+          <select [(ngModel)]="departamento" (ngModelChange)="getTableLine(departamento)">
             <option *ngFor="let d of departamentos" value={{d}}>{{d}} </option>
           </select>
         </td>
         <td>
           <select [(ngModel)]="nomeCadeira">
-            <option *ngFor="let d of getTableLine(departamento)" value={{d.nome_disciplina}}>{{d.nome_disciplina}} </option>
+            <option *ngFor="let d of cadeiras_departamento" value={{d.nome_disciplina}}>{{d.nome_disciplina}} </option>
           </select>
         </td>
         <td><button (click)="loadCadeira(nomeCadeira)">Selecionar</button></td>

@@ -22,20 +22,16 @@ export class CadeiraService {
     private taURL = 'http://localhost:3000';
     
     constructor(private http: HttpClient) {}
-    criar(cadeira: Cadeira): Observable<Cadeira> {
-        return this.http.post<any>(this.taURL + "/cadeira", cadeira, {headers: this.headers})
-            .pipe(
-                retry(2),
-                map( res => {
-                    if (res.sucess) {
-                        return cadeira
-                    } else {
-                        return null
-                    }
-                })               
-        );
-    }
 
+    criar(cadeira: Cadeira): Observable<Cadeira> {
+        console.log(cadeira)
+        return this.http.post<any>(this.taURL + "/cadeira", cadeira, {headers: this.headers})
+            .pipe( 
+                retry(2),
+                map( res => {if (res.success) {return cadeira;} else {return null;}} )
+            ); 
+    }
+ 
     atualizar(cadeira: Cadeira): Observable<Cadeira> {
         return this.http.put<any>(this.taURL + "/cadeira", JSON.stringify(cadeira), {headers: this.headers})
           .pipe( 
@@ -47,7 +43,7 @@ export class CadeiraService {
                     return null;
                 }
             })
-        ); 
+        );
     }
 
     getCadeiras(departamento_ofertante: String = ""): Cadeira[] {

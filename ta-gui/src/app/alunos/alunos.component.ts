@@ -17,18 +17,10 @@ export class AlunosComponent implements OnInit {
   cpfduplicado: boolean = false;
 
   logarAluno(a: Aluno): void {
-    // if (this.alunoService.cpfNaoCadastrado(a.cpf)) {
-    //   alert("CPF inválido. Usuário não Cadastrado.")
-    // } else {
-    //   if (this.alunoService.checksenha(a.cpf,a.senha)){
-    //     alert("Senha inválida. Tente novamente.")
-    //   } else {
-    //     this.loginService.login(this.alunoService.getAlunoCPFPass(a.cpf, a.senha), "Aluno");
-    //     //tela de entrada
-    //     alert("Login efetuado! Seja bem vindo!");
-    //     this._route.navigate(['cadeiras']);
-    //   }
-    // }
+    this.loginService.login(this.aluno, "Aluno");
+    //tela de entrada
+    alert("Login efetuado! Seja bem vindo!");
+    this._route.navigate(['cadeiras']);
   }
   
   onMove(): void {

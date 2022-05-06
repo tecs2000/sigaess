@@ -81,5 +81,23 @@ export class Cadeira {
     }
     return result;
   }
+
+  copyFrom(from: Cadeira): void {
+    this.nome_disciplina = from.nome_disciplina;
+    this.nome_professor = from.nome_professor;
+    this.numero_vagas = from.numero_vagas;
+    this.carga_horaria = from.carga_horaria;
+    this.departamento_ofertante = from.departamento_ofertante;
+    this.horarios = from.cloneHorarios();
+    this.alunos = from.cloneAlunos();
+  }
+
+  copyFromJSON(from: Cadeira): void {
+    this.nome_disciplina = from.nome_disciplina;
+    this.nome_professor = from.nome_professor;
+    this.numero_vagas = from.numero_vagas;
+    this.carga_horaria = from.carga_horaria;
+    this.departamento_ofertante = from.departamento_ofertante;
+  }
 }
   

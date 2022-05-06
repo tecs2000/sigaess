@@ -25,26 +25,27 @@ export class CadeirasComponent implements OnInit {
   departamento: string;
   nomeCadeira: string;
   cadeira: Cadeira = undefined;
+  cadeiras_departamento: Cadeira[];
 
   ngOnInit(): void {
     this.cadeiras = this.cadeirasService.getCadeiras();
     this.cadeirasService.getDepartamentos().subscribe(
       ar => {
         if (ar) {
-          this.departamentos = ar;
+          this.departamentos = Object.assign([], ar);;
         }
       },
       msg => { alert(msg.message); }
     );
     this.accountType = this.loginService.getType();
     this.account = this.loginService.getAccount();
+    this.cadeiras_departamento = [];
   }
 
-  getTableLine(k: string): Cadeira[]{
+  getTableLine(k: string): void {
     if (k) {
-      return this.cadeirasService.getCadeiras(k);
+      this.cadeiras_departamento = this.cadeirasService.getCadeiras(k);
     }
-    return [];
   }
 
   loadCadeira(nome: string) {

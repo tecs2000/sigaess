@@ -24,11 +24,11 @@ export class ProfComponent implements OnInit {
     this._route.navigate(['cadeiras']);
   }
 
-   onMove(): void {
-      this.cpfduplicado = false;
-   }
+  onMove(): void {
+    this.cpfduplicado = false;
+  }
 
-   ngOnInit(): void {
-   }
+  ngOnInit(): void {
+  }
 
 }

@@ -6,7 +6,7 @@ import {CadastroDeAlunos} from './cadastrodealunos';
 import { CadastroDeProfs } from './cadastrodeprofs';
 import { Professor } from '../common/professor';
 import { CadastroDeCadeiras } from './cadastrodecadeiras';
-import { Cadeira } from '../common/cadeiras';
+import { Cadeira, CadeiraPackage } from '../common/cadeiras';
 
 var taserver = express();
 
@@ -85,7 +85,7 @@ var cadeiras: CadastroDeCadeiras = new CadastroDeCadeiras();
 
 taserver.get('/cadeiras', function (req, res) {
   console.log("I receave a /cadeiras get");
-  var result_cadeiras: string = JSON.stringify(cadeiras.getCadeiras());
+  var result_cadeiras: string = JSON.stringify(cadeiras.getCadeirasPackages());
   res.send(result_cadeiras);
 })
 
@@ -93,13 +93,12 @@ taserver.post('/cadeira', function (req: express.Request, res: express.Response)
   // Lembrar de colocar pra ele retornar a string do criar 
   // cadeira para quando dá errado
   console.log("I receave a /cadeira post");
-  var cadeira: Cadeira | string = <Cadeira> req.body;
-  console.log(cadeira);
-  cadeira = cadeiras.criar(cadeira);
+  var cadeiraPackage: CadeiraPackage = <CadeiraPackage> req.body;
+  var cadeira = cadeiras.criar(cadeiraPackage);
   if (cadeira) {
-    res.send({"success": "O cadeira foi cadastrada com sucesso"});
+    res.send({"success": "A cadeira foi cadastrada com sucesso"});
   } else {
-    res.send({"failure": "O cadeira não pode ser cadastrada"});
+    res.send({"failure": "A cadeira não pode ser cadastrada"});
   }
 })
 
@@ -108,9 +107,9 @@ taserver.put('/cadeira', function (req: express.Request, res: express.Response) 
   var cadeira: Cadeira = <Cadeira> req.body;
   cadeira = cadeiras.atualizar(cadeira);
   if (cadeira) {
-    res.send({"success": "O cadeira foi atualizada com sucesso"});
+    res.send({"success": "A cadeira foi atualizada com sucesso"});
   } else {
-    res.send({"failure": "O cadeira não pode ser atualizada"});
+    res.send({"failure": "A cadeira não pode ser atualizada"});
   }
 })
 

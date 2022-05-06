@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { retry, map } from 'rxjs/operators';
 
 import { Aluno } from '..//../../common/aluno';
-import { Cadeira } from "../../../common/cadeiras";
+import { Cadeira, CadeiraPackage } from "../../../common/cadeiras";
 
 export class CadeiraAluno {
     cadeira = new Cadeira();
@@ -24,8 +24,9 @@ export class CadeiraService {
     constructor(private http: HttpClient) {}
 
     criar(cadeira: Cadeira): Observable<Cadeira> {
-        console.log(cadeira)
-        return this.http.post<any>(this.taURL + "/cadeira", cadeira, {headers: this.headers})
+        var cadeiraPackage = cadeira.createDataPackage()
+        console.log(JSON.stringify(cadeiraPackage))
+        return this.http.post<any>(this.taURL + "/cadeira", cadeiraPackage, {headers: this.headers})
             .pipe( 
                 retry(2),
                 map( res => {if (res.success) {return cadeira;} else {return null;}} )
@@ -48,7 +49,7 @@ export class CadeiraService {
 
     getCadeiras(departamento_ofertante: String = ""): Cadeira[] {
         var result: Cadeira[] = [];
-        this.http.get<Cadeira[]>(this.taURL + "/cadeiras")
+        this.http.get<CadeiraPackage[]>(this.taURL + "/cadeiras")
                             .pipe(
                                 retry(2)
                             ).subscribe(
@@ -56,7 +57,9 @@ export class CadeiraService {
                                         if (ar) {
                                             for (let c of ar) {
                                                 if (departamento_ofertante=="" || c.departamento_ofertante==departamento_ofertante) {
-                                                  result.push(c.clone());
+                                                    var cadeira = new Cadeira();
+                                                    cadeira.copyFromDataPackage(c);
+                                                    result.push(cadeira);
                                                 }
                                             }
                                         }
@@ -73,26 +76,6 @@ export class CadeiraService {
             )
     }
 
-    getCadeira(nome: string): Cadeira | null {
-        var result = null;
-        this.http.get<Cadeira[]>(this.taURL + "/cadeiras")
-            .pipe(
-                retry(2)
-            ).subscribe(
-                ar => {
-                        if (ar) {
-                            for (let c of ar) {
-                                if (c.nome_disciplina == nome) {
-                                result.push(c.clone());
-                                break;
-                                }
-                            }
-                        }
-                    },
-                msg => { alert(msg.message); }
-            );
-        return result;
-    }
 
     addAluno(cadeira: Cadeira, aluno: Aluno): Observable<Cadeira> {
         var cadeiraAluno = new CadeiraAluno(cadeira, aluno)

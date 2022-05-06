@@ -18,7 +18,9 @@ export class ProfComponent implements OnInit {
    cpfduplicado: boolean = false;
 
   logarProf(a: Professor): void {
-    this.loginService.login(this.prof , "Professor");
+    var prof = new Professor()
+    prof.nome = "Professor"
+    this.loginService.login(prof , "Professor");
     //tela de entrada
     alert("Login efetuado! Seja bem vindo!");
     this._route.navigate(['cadeiras']);

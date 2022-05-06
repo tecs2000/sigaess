@@ -1,5 +1,5 @@
 import { Aluno } from '../common/aluno';
-import { Cadeira } from '../common/cadeiras';
+import { Cadeira, CadeiraPackage } from '../common/cadeiras';
 
 export class CadastroDeCadeiras {
     cadeiras: Cadeira[] = [];
@@ -15,18 +15,21 @@ export class CadastroDeCadeiras {
                                                 "CIn",
                                                 "CTG"]);
 
-    criar(cadeira: Cadeira): Cadeira | string {
-        var result = null;
+    criar(cadeiraPackage: CadeiraPackage): Cadeira | string {
+        var cadeira = new Cadeira();
+        cadeira.copyFromDataPackage(cadeiraPackage);
         var result_check = this.checkCriar(cadeira);
+        console.log(cadeira);
         if (result_check == "ok") {
-            result = new Cadeira();
-            result.copyFromJSON(cadeira);
+            console.log("cadeira válida");
             this.cadeiras.push(cadeira);
             if (!this.departamentos.has(cadeira.departamento_ofertante)) {
                 this.departamentos.add(cadeira.departamento_ofertante);
             }
             return cadeira;
         }
+        console.log("cadeira inválida");
+        console.log(result_check);
         return result_check;
     }
 
@@ -110,6 +113,18 @@ export class CadastroDeCadeiras {
     
     getCadeiras(): Cadeira[] {
         return this.cadeiras;
+    }
+
+    getCadeirasPackages(): CadeiraPackage[] {
+        var cadeirasPackages: CadeiraPackage[] = [];
+        this.cadeiras.forEach(a => {
+                console.log(a);
+                cadeirasPackages.push(new CadeiraPackage(a))
+                console.log(new CadeiraPackage(a))
+            }
+        )
+        console.log(cadeirasPackages)
+        return cadeirasPackages
     }
 
     getCadeira(nome: string): Cadeira | null {

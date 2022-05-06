@@ -42,8 +42,8 @@ export class CriarCadeiraComponent implements OnInit {
   }
 
   toggleHorario(cadeira: Cadeira, weekday:string, horario: number) {
-    if (cadeira.horarios[weekday]) {
-      if (cadeira.horarios[weekday].has(horario)) {
+    if (cadeira.horarios.get(weekday)) {
+      if (cadeira.horarios.get(weekday).has(horario)) {
         this.removerHorario(cadeira, weekday, horario);
         return
       } else {

@@ -77,7 +77,12 @@ export class CadeirasComponent implements OnInit {
 
   matricula(cadeira: Cadeira, aluno: Aluno | Professor) {
     if (aluno instanceof Aluno) {
-      this.cadeirasService.addAluno(cadeira, aluno);
+      this.cadeirasService.addAluno(cadeira, aluno).subscribe(
+        ar => {
+          
+        },
+        msg => { alert(msg.message); }
+      );
     }
   }
 }

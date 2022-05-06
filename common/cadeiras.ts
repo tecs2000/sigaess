@@ -77,7 +77,7 @@ export class Cadeira {
   addAluno(aluno: Aluno): boolean {
     var result: boolean = false;
     if (this.alunos.size < Number(this.numero_vagas)) {
-      this.alunos.add(aluno.cpf);
+      this.alunos.add(aluno.nome);
       result = true;
     }
     return result;

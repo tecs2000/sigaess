@@ -15,9 +15,7 @@ export class CadastroDeCadeiras {
                                                 "CIn",
                                                 "CTG"]);
 
-    criar(cadeiraPackage: CadeiraPackage): Cadeira | string {
-        var cadeira = new Cadeira();
-        cadeira.copyFromDataPackage(cadeiraPackage);
+    criar(cadeira: Cadeira): Cadeira | string {
         var result_check = this.checkCriar(cadeira);
         console.log(cadeira);
         if (result_check == "ok") {

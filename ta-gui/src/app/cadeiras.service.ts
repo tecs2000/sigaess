@@ -7,11 +7,11 @@ import { Aluno } from '..//../../common/aluno';
 import { Cadeira, CadeiraPackage } from "../../../common/cadeiras";
 
 export class CadeiraAluno {
-    cadeira = new Cadeira();
+    cadeira: CadeiraPackage;
     aluno = new Aluno();
 
     constructor(cadeira: Cadeira, aluno: Aluno) {
-        this.cadeira = cadeira;
+        this.cadeira = new CadeiraPackage(cadeira);
         this.aluno = aluno;
     }
 }
@@ -75,7 +75,6 @@ export class CadeiraService {
                 retry(2)
             )
     }
-
 
     addAluno(cadeira: Cadeira, aluno: Aluno): Observable<Cadeira> {
         var cadeiraAluno = new CadeiraAluno(cadeira, aluno)

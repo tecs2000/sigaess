@@ -94,8 +94,10 @@ taserver.post('/cadeira', function (req: express.Request, res: express.Response)
   // cadeira para quando dá errado
   console.log("I receave a /cadeira post");
   var cadeiraPackage: CadeiraPackage = <CadeiraPackage> req.body;
-  var cadeira = cadeiras.criar(cadeiraPackage);
-  if (cadeira) {
+  var cadeira = new Cadeira();
+  cadeira.copyFromDataPackage(cadeiraPackage);
+  var result = cadeiras.criar(cadeira);
+  if (result) {
     res.send({"success": "A cadeira foi cadastrada com sucesso"});
   } else {
     res.send({"failure": "A cadeira não pode ser cadastrada"});
@@ -104,9 +106,25 @@ taserver.post('/cadeira', function (req: express.Request, res: express.Response)
 
 taserver.put('/cadeira', function (req: express.Request, res: express.Response) {
   console.log("I receave a /cadeira put")
-  var cadeira: Cadeira = <Cadeira> req.body;
-  cadeira = cadeiras.atualizar(cadeira);
-  if (cadeira) {
+  var cadeiraPackage: CadeiraPackage = <CadeiraPackage> req.body;
+  var cadeira = new Cadeira();
+  cadeira.copyFromDataPackage(cadeiraPackage);
+  var result = cadeiras.atualizar(cadeira);
+  if (result) {
+    res.send({"success": "A cadeira foi atualizada com sucesso"});
+  } else {
+    res.send({"failure": "A cadeira não pode ser atualizada"});
+  }
+})
+
+taserver.put('/cadeiraAddAluno', function (req: express.Request, res: express.Response) {
+  console.log("I receave a /cadeiraAddAluno put")
+  var cadeiraPackage: CadeiraPackage = <CadeiraPackage> req.body.cadeira;
+  var aluno: Aluno = <Aluno> req.body.aluno;
+  var cadeira = new Cadeira();
+  cadeira.copyFromDataPackage(cadeiraPackage);
+  var result = cadeiras.addAluno(cadeira, aluno);
+  if (result) {
     res.send({"success": "A cadeira foi atualizada com sucesso"});
   } else {
     res.send({"failure": "A cadeira não pode ser atualizada"});

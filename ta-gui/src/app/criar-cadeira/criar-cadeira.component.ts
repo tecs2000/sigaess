@@ -27,13 +27,13 @@ export class CriarCadeiraComponent implements OnInit {
                         .subscribe(
                           ar => {
                             if (ar) {
-                              if (typeof result_criar === "object") {
+                              if (typeof ar === "object") {
                                 this.cadeira = new Cadeira();
                                 this._route.navigate(['cadeiras']);
                               } else 
-                                alert(result_criar)
+                                alert(ar)
                             } else {
-                              alert("Esse CPF já foi cadastrado. Tente Novamente")
+                              alert("Algo deu errado, tente novamente mais tarde")
                             } 
                           },
                           msg => { alert(msg.message); }

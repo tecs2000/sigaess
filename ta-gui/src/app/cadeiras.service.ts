@@ -23,13 +23,20 @@ export class CadeiraService {
     
     constructor(private http: HttpClient) {}
 
-    criar(cadeira: Cadeira): Observable<Cadeira> {
+    criar(cadeira: Cadeira): Observable<Cadeira | string> {
         var cadeiraPackage = cadeira.createDataPackage()
         console.log(JSON.stringify(cadeiraPackage))
         return this.http.post<any>(this.taURL + "/cadeira", cadeiraPackage, {headers: this.headers})
             .pipe( 
                 retry(2),
-                map( res => {if (res.success) {return cadeira;} else {return null;}} )
+                map( res => {if (res.success) {
+                        return cadeira;
+                    } else if (res.failure) {
+                        return res.failure
+                    } else {
+                        return null;
+                    }
+                })
             ); 
     }
  

@@ -97,10 +97,10 @@ taserver.post('/cadeira', function (req: express.Request, res: express.Response)
   var cadeira = new Cadeira();
   cadeira.copyFromDataPackage(cadeiraPackage);
   var result = cadeiras.criar(cadeira);
-  if (result) {
+  if (typeof result === "object") {
     res.send({"success": "A cadeira foi cadastrada com sucesso"});
   } else {
-    res.send({"failure": "A cadeira não pode ser cadastrada"});
+    res.send({"failure": result.toString()});
   }
 })
 

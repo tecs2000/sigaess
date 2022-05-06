@@ -37,20 +37,21 @@ export class Cadeira {
 
   horariosInitial(): Map<string, Set<number>> {
     var  horarios: Map<string, Set<number>> = new Map<string, Set<number>>();
-    horarios["seg"] = new Set<number>();
-    horarios["ter"] = new Set<number>();
-    horarios["qua"] = new Set<number>();
-    horarios["qui"] = new Set<number>();
-    horarios["sex"] = new Set<number>();
-    horarios["sab"] = new Set<number>();
+    horarios.set("seg", new Set<number>());
+    horarios.set("ter", new Set<number>());
+    horarios.set("qua", new Set<number>());
+    horarios.set("qui", new Set<number>());
+    horarios.set("sex", new Set<number>());
+    horarios.set("sab", new Set<number>());
     return horarios
   }
 
   cloneHorarios(): Map<string, Set<number>> {
     var horarios: Map<string, Set<number>> = new Map<string, Set<number>>();
-    for (var i in this.horarios) {
-      horarios[i] = new Set(JSON.parse(JSON.stringify([...this.horarios[i]])))
-    }
+    console.log(this.horarios)
+    this.horarios.forEach((v, k) => {
+      horarios.set(k, new Set(JSON.parse(JSON.stringify([...v]))));
+    });
     return horarios;
   }
 
@@ -60,15 +61,15 @@ export class Cadeira {
   }
   
   addHorario(weekday: string, h: number): void {
-    if (this.horarios[weekday]) {
-      this.horarios[weekday].add(h);
+    if (this.horarios.get(weekday)) {
+      this.horarios.get(weekday).add(h);
       this.carga_horaria += 1;
     }
   }
 
   removerHorario(weekday: string, horario: number): void {
-    if (this.horarios[weekday]) {
-      this.horarios[weekday].delete(horario);
+    if (this.horarios.get(weekday)) {
+      this.horarios.get(weekday).delete(horario);
       this.carga_horaria -= 1;
     }
   }
@@ -92,12 +93,55 @@ export class Cadeira {
     this.alunos = from.cloneAlunos();
   }
 
-  copyFromJSON(from: Cadeira): void {
+  copyFromDataPackage(from: CadeiraPackage): void {
     this.nome_disciplina = from.nome_disciplina;
     this.nome_professor = from.nome_professor;
     this.numero_vagas = from.numero_vagas;
     this.carga_horaria = from.carga_horaria;
     this.departamento_ofertante = from.departamento_ofertante;
+    var horarios = new Map<string, Set<number>>();
+    horarios.set("seg", new Set(from.horarios[0]))
+    horarios.set("ter", new Set(from.horarios[1]))
+    horarios.set("qua", new Set(from.horarios[2]))
+    horarios.set("qui", new Set(from.horarios[3]))
+    horarios.set("sex", new Set(from.horarios[4]))
+    horarios.set("sab", new Set(from.horarios[5]))
+    this.horarios = new Map<string, Set<number>>(horarios);
+    this.alunos = new Set(from.alunos);
+  }
+
+  createDataPackage(): CadeiraPackage {
+    var cadeiraPackage = new CadeiraPackage(this);
+    return cadeiraPackage;
   }
 }
-  
+ 
+export class CadeiraPackage {
+  nome_disciplina: string;
+  nome_professor: string;
+  numero_vagas: string;
+  carga_horaria: number;
+  departamento_ofertante: string;
+  horarios: Array<Array<number>>;
+  alunos: Array<string>;
+
+  constructor(cadeira: Cadeira) {
+    this.nome_disciplina = cadeira.nome_disciplina;
+    this.nome_professor = cadeira.nome_professor;
+    this.numero_vagas = cadeira.numero_vagas;
+    this.carga_horaria = cadeira.carga_horaria;
+    this.departamento_ofertante = cadeira.departamento_ofertante;
+    var horarios = new Array<Array<number>>();
+    horarios.push(Array.from(cadeira.horarios.get("seg")));
+    horarios.push(Array.from(cadeira.horarios.get("ter")));
+    horarios.push(Array.from(cadeira.horarios.get("qua")));
+    horarios.push(Array.from(cadeira.horarios.get("qui")));
+    horarios.push(Array.from(cadeira.horarios.get("sex")));
+    horarios.push(Array.from(cadeira.horarios.get("sab")));    
+    this.horarios = horarios;
+    this.alunos = Array.from(cadeira.alunos);
+  }
+
+  clean(): void {
+  }
+}

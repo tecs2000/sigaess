@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { Aluno } from './aluno';
+import { Aluno } from '../../../common/aluno';
 import { AlunoService } from './aluno.service';
-import { Cadeira } from './cadeiras';
+import { Cadeira } from '../../../common/cadeiras';
 
 @Component({
   selector: 'app-root',
@@ -11,5 +11,4 @@ import { Cadeira } from './cadeiras';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private alunoService: AlunoService) {}
 }

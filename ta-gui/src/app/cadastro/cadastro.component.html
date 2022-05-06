@@ -1,4 +1,4 @@
-<html (mousemove)="onMove()" ng-app="app">
+<html ng-app="app">
 
 <h3 class="msg">Digite suas informações:</h3>
 
@@ -11,25 +11,29 @@
 </body>
 
 <table class="cad">
-<tr>
-   <td><label>Nome</label></td>
-   <td><input [(ngModel)]="aluno.nome" ></td>
-</tr>
-<tr>
-   <td><label>CPF</label></td>
-   <td><input [(ngModel)]="aluno.cpf" ></td>
-   <td *ngIf="cpfduplicado">
-     Já existe um aluno com esse CPF
-   </td>
-</tr>
-<tr>
-   <td><label>Data de nascimento</label></td>
-   <td><input [(ngModel)]="aluno.dt_nasc" ></td>
-</tr>
-<tr>
-   <td><label>Senha</label></td>
-   <td><input [(ngModel)]="aluno.senha" ></td>
-</tr>
+   <tr>
+      <td><label>Nome</label></td>
+      <td><input [(ngModel)]="aluno.nome" ></td>
+   </tr>
+   <tr>
+      <td><label>CPF</label></td>
+      <td><input [(ngModel)]="aluno.cpf" ></td>
+      <td *ngIf="cpfduplicado">
+      Já existe um aluno com esse CPF
+      </td>
+   </tr>
+   <tr>
+      <td><label>Data de nascimento</label></td>
+      <td><input type="date" [(ngModel)]="aluno.dt_nasc" ></td>
+   </tr>
+   <tr>
+      <td><label>Email</label></td>
+      <td><input [(ngModel)]="aluno.email" ></td>
+   </tr>
+   <tr>
+      <td><label>Senha</label></td>
+      <td><input type="password" minlength="8" required [(ngModel)]="aluno.senha" ></td>
+   </tr>
 </table>
 
 <button class="btcad" (click)="criarAluno(aluno, typeAccount)">Salvar</button>

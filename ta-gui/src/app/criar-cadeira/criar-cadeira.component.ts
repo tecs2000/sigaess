@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Cadeira } from '../cadeiras';
+import { Cadeira } from '../../../../common/cadeiras';
 import { CadeiraService } from '../cadeiras.service';
 import { LoginService } from '../login.service';
-import { Professor } from '../professor';
+import { Professor } from '../../../../common/professor';
 
 @Component({
   selector: 'app-criar-cadeira',
@@ -22,17 +22,28 @@ export class CriarCadeiraComponent implements OnInit {
   horarios: Array<number> = Array(24).fill(-1).map((x,i)=>i);
 
   criarCadeira(c: Cadeira): void {
+    console.log(JSON.stringify(c))
     var result_criar = this.cadeirasService.criar(c)
-    if (typeof result_criar === "object") {
-      this.cadeira = new Cadeira();
-      this._route.navigate(['cadeiras']);
-    } else 
-      alert(result_criar)
+                        .subscribe(
+                          ar => {
+                            if (ar) {
+                              if (typeof ar === "object") {
+                                this.cadeira = new Cadeira();
+                                this._route.navigate(['cadeiras']);
+                              } else 
+                                alert(ar)
+                            } else {
+                              alert("Algo deu errado, tente novamente mais tarde")
+                            } 
+                          },
+                          msg => { alert(msg.message); }
+                        );
+    
   }
 
   toggleHorario(cadeira: Cadeira, weekday:string, horario: number) {
-    if (cadeira.horarios[weekday]) {
-      if (cadeira.horarios[weekday].has(horario)) {
+    if (cadeira.horarios.get(weekday)) {
+      if (cadeira.horarios.get(weekday).has(horario)) {
         this.removerHorario(cadeira, weekday, horario);
         return
       } else {
@@ -51,7 +62,14 @@ export class CriarCadeiraComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.departamentos = this.cadeirasService.getDepartamentos();
+    this.cadeirasService.getDepartamentos().subscribe(
+      ar => {
+        if (ar) {
+          this.departamentos = ar;
+        }
+      },
+      msg => { alert(msg.message); }
+    );
     this.professor = this.loginService.getAccount();
     if (!this.professor || this.loginService.getType() == "Aluno") {
       this._route.navigate(['professores']);

@@ -29,7 +29,7 @@ export class PerfilComponent implements OnInit {
     //this.cadeiras = this.cadeirasService.getCadeirasOfUser(); //uma função que retorna um array de cadeiras contendo
     this.accountType = this.loginService.getType();//firebase           //os objetos cadeira que o aluno tá matriculado
     this.account = this.loginService.getAccount();//firebase            //ou que o professor leciona (atributo cadeiras de pessoa?)
-    this.allCadeiras = this.cadeirasService.getCadeiras(); //gambiarra pra testar
+    this.allCadeiras = this.cadeirasService.getCadeiras(); //isso aqui tá dando ruim
     this.userCadeiras = this.loadUserCadeiras();
   }
 

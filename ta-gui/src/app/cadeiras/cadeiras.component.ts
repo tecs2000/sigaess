@@ -43,6 +43,7 @@ export class CadeirasComponent implements OnInit {
   }
 
   getTableLine(k: string): void {
+    console.log(k)
     if (k) {
       this.cadeiras_departamento = this.cadeirasService.getCadeiras(k);
     }

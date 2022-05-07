@@ -8,52 +8,38 @@
       <title>Integrated System</title>
   </head>
 <body>
-  <form id="cadeira-form">
+  <form id="cadeira-form" class="my_form">
     <div class="input-field">
-      <input type="text" id="cadeira-name" required />
-      <label for="cadeira-name">Name </label>
+      <input type="text" id="cadeira-name"
+        [(ngModel)]="cadeira.nome_disciplina"
+        [ngModelOptions]="{standalone: true}" required />
+      <label for="cadeira-name">Nome da Disciplina </label>
     </div>
     <div class="row">
       <label>Departamento</label>
       <div class="select1 green-text">
-        <select class="browser-default">
-            <option value="" disabled selected>
-              Selecione o Departamento
-            </option>
-            <option *ngFor="let d of departamentos" value={{d}}>
-              {{d}}
-            </option>
+        <select class="browser-default" 
+          [(ngModel)]="cadeira.departamento_ofertante" 
+          [ngModelOptions]="{standalone: true}">
+          <option value="" disabled selected>
+            Selecione o Departamento
+          </option>
+          <option *ngFor="let d of departamentos" value={{d}}>
+            {{d}}
+          </option>
         </select>
       </div>
     </div>
     <div class="row">
-      
+      <input type="number" id="cadeira-vagas" min="1" 
+        [(ngModel)]="cadeira.numero_vagas" [ngModelOptions]="{standalone: true}" required />
+      <label for="cadeira-vagas">Total de vagas </label>
     </div>
+    <button class="btn waves-effect waves-light" (click)="criarCadeira(cadeira)" type="submit">Finalizar
+    </button>
   </form>
 
-  <!-- <table>
-    <tr>
-      <td><label>Nome </label></td>
-      <td><input [(ngModel)]="cadeira.nome_disciplina" ></td>
-      <td><button (click)="criarCadeira(cadeira)">Finalizar</button></td>
-    </tr>
-    <tr>
-      <td><label>Professor</label></td>
-      <td align="right">{{cadeira.nome_professor}}</td>
-    </tr>
-    <tr>
-      <td><label>Departamento Ofertante </label></td>
-      <td  align="right">
-        <select [(ngModel)]="cadeira.departamento_ofertante">
-          <option *ngFor="let d of departamentos" value={{d}}>{{d}}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td><label>Total de vagas </label></td>
-      <td><input type="number" min="1" [(ngModel)]="cadeira.numero_vagas" ></td>
-    </tr>
-  </table> -->
+  <hr>
 
   <div>
     <table border="0" cellspacing="0" cellpadding="0" width="570" bordercolor="#000000">

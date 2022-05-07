@@ -36,6 +36,13 @@
    </tr>
 </table>
 
-<button class="btcad" (click)="criarAluno(aluno, typeAccount)">Salvar</button>
+<nav>
+   <a routerLink="/cadeiras">
+      <button class="btcad" (click)="criarAluno(aluno, typeAccount)">Salvar</button>
+   </a>
+</nav>
+
+<router-outlet></router-outlet>
+
 
 </html>

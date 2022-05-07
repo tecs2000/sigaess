@@ -1,6 +1,20 @@
-
-<div class="formulario_cadeira" align="center">
-  <table>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+      <title>Integrated System</title>
+  </head>
+<body>
+  <form id="cadeira-form">
+    <div class="input-field">
+      <input type="text" id="cadeira-name" required />
+      <label for="cadeira-name">Name </label>
+    </div>
+  </form>
+  <!-- <table>
     <tr>
       <td><label>Nome </label></td>
       <td><input [(ngModel)]="cadeira.nome_disciplina" ></td>
@@ -9,9 +23,6 @@
     <tr>
       <td><label>Professor</label></td>
       <td align="right">{{cadeira.nome_professor}}</td>
-      <!-- <td *ngIf="mensagem_erro_adicionar">
-        {{mensagem_erro_adicionar}}
-      </td>     -->
     </tr>
     <tr>
       <td><label>Departamento Ofertante </label></td>
@@ -25,9 +36,9 @@
       <td><label>Total de vagas </label></td>
       <td><input type="number" min="1" [(ngModel)]="cadeira.numero_vagas" ></td>
     </tr>
-  </table>
-  <br>
-  <div class="gradeHorarios">
+  </table> -->
+
+  <div>
     <table border="0" cellspacing="0" cellpadding="0" width="570" bordercolor="#000000">
       <tbody>
         <tr>
@@ -51,4 +62,12 @@
       </tbody>
     </table>
   </div>
-</div>
+
+  <!-- We need jquery first -->  
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+</body>
+</html>

@@ -13,7 +13,24 @@
       <input type="text" id="cadeira-name" required />
       <label for="cadeira-name">Name </label>
     </div>
+    <div class="row">
+      <label>Departamento</label>
+      <div class="select1 green-text">
+        <select class="browser-default">
+            <option value="" disabled selected>
+              Selecione o Departamento
+            </option>
+            <option *ngFor="let d of departamentos" value={{d}}>
+              {{d}}
+            </option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      
+    </div>
   </form>
+
   <!-- <table>
     <tr>
       <td><label>Nome </label></td>
@@ -65,6 +82,13 @@
 
   <!-- We need jquery first -->  
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      $('select').formSelect();
+    });
+  </script>
+
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>

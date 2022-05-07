@@ -10,8 +10,9 @@
 <body>
   <h2 *ngIf="account != undefined">Bem vindo {{account.nome}}!</h2>
   <div align="center">
-    <table *ngIf="checkIfProf(account)">
-      <td><a routerLink="/criarCadeira"><button>Adicionar</button></a></td>
+    <table>
+      <td *ngIf="checkIfProf(account)"><a routerLink="/criarCadeira"><button>Adicionar Nova Cadeira</button></a></td>
+      <td><a routerLink="/perfil"><button>Ver horários</button></a></td>
     </table>
     <form id="cadeira-form" class="my_form">
       <div class="row">

@@ -76,6 +76,27 @@ export class CadeiraService {
         return result;        
     }
 
+    getAllCadeiras(): Cadeira[] {
+        var result: Cadeira[] = [];
+        this.http.get<CadeiraPackage[]>(this.taURL + "/cadeiras")
+                            .pipe(
+                                retry(2)
+                            ).subscribe(
+                                ar => {
+                                        if (ar) {
+                                            for (let c of ar) {
+                                                    var cadeira = new Cadeira();
+                                                    cadeira.copyFromDataPackage(c);
+                                                    result.push(cadeira);
+                                            }
+                                        }
+                                    },
+                                msg => { alert(msg.message); }
+                            );
+        console.log(result);                    
+        return result;        
+    }
+
     getDepartamentos(): Observable<string[]> {
         return this.http.get<string[]>(this.taURL + "/departamentos")
             .pipe(

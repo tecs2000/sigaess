@@ -21,7 +21,7 @@ export class CadeirasComponent implements OnInit {
   departamentos: string[];
 
   weekdays: string[] = ["seg", "ter", "qua", "qui", "sex", "sab"];
-  horarios: Array<number> = Array(24).fill(0).map((x,i)=>i);;
+  horarios: Array<number> = Array(15).fill(-1).map((x,i)=>i+8);
   departamento: string;
   nomeCadeira: string;
   cadeira: Cadeira = undefined;

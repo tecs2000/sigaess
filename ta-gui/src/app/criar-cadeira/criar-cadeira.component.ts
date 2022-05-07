@@ -19,7 +19,7 @@ export class CriarCadeiraComponent implements OnInit {
   departamentos: string[] = [];
   horario: number;
   weekdays: string[] = ["seg", "ter", "qua", "qui", "sex", "sab"];
-  horarios: Array<number> = Array(24).fill(-1).map((x,i)=>i);
+  horarios: Array<number> = Array(15).fill(-1).map((x,i)=>i+8);
 
   criarCadeira(c: Cadeira): void {
     console.log(JSON.stringify(c))

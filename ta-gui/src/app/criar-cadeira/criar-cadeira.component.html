@@ -35,14 +35,14 @@
         [(ngModel)]="cadeira.numero_vagas" [ngModelOptions]="{standalone: true}" required />
       <label for="cadeira-vagas">Total de vagas </label>
     </div>
-    <button class="btn waves-effect waves-light" (click)="criarCadeira(cadeira)" type="submit">Finalizar
-    </button>
+    <div class="row" align="center">
+      <button class="btn waves-effect waves-light" (click)="criarCadeira(cadeira)" type="submit">Finalizar
+      </button>
+    </div>
   </form>
 
-  <hr>
-
-  <div>
-    <table border="0" cellspacing="0" cellpadding="0" width="570" bordercolor="#000000">
+  <div class="my_form">
+    <table class="centered" border="0" cellspacing="0" cellpadding="0" width="570" bordercolor="#000000">
       <tbody>
         <tr>
           <td bgcolor="#ffcc99" class="topoTabelaEsq" align="center" width="40"><b>Horários</b></td>
@@ -74,7 +74,6 @@
       $('select').formSelect();
     });
   </script>
-
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>

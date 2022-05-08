@@ -30,7 +30,7 @@ export class PerfilComponent implements OnInit {
     this.accountType = this.loginService.getType();//firebase           //os objetos cadeira que o aluno tá matriculado
     this.account = this.loginService.getAccount();//firebase            //ou que o professor leciona (atributo cadeiras de pessoa?)
     this.allCadeiras = this.cadeirasService.getCadeiras(); //isso aqui tá dando ruim
-    this.userCadeiras = this.loadUserCadeiras();
+    this.loadUserCadeiras();
   }
 
   loadCadeira(nome: string) {
@@ -39,20 +39,21 @@ export class PerfilComponent implements OnInit {
         this.cadeira = this.allCadeiras[i].clone();
         return;
       }
-    }
+    } 
+    this.loadUserCadeiras()
   }
 
-  loadUserCadeiras(): Cadeira[] {
-    console.log(this.allCadeiras)
+  loadUserCadeiras(): void {
+    console.log(this.allCadeiras.length)
     var result: Cadeira[] = [];
     for (var i = 0; i < this.allCadeiras.length; ++i) {
-      console.log(this.allCadeiras[i]);
-      if (this.allCadeiras[i].nome_professor == 'Professor') {
+      console.log("A");
+      if (this.allCadeiras[i].nome_professor === 'Professor') {
         result.push(this.allCadeiras[i].clone());
       }
     }
     console.log(result);
-    return result;
+    this.userCadeiras = result;
   }
 
 }

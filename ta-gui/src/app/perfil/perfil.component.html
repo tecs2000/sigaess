@@ -7,7 +7,7 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
       <title>Integrated System</title>
   </head>
-<body>
+<body class="all">
   <h2 *ngIf="account != undefined">Bem vindo {{account.nome}}!</h2>
   <div align="center">
     <form id="cadeira-form" class="my_form">
@@ -18,7 +18,7 @@
             <option value="" disabled selected>
                 Selecione uma Cadeira
             </option>
-            <option *ngFor="let d of allCadeiras" value={{d.nome}}>{{d.nome}} </option>
+            <option *ngFor="let d of allCadeiras" value={{d.nome_disciplina}}>{{d.nome_disciplina}} </option>
           </select>
         </div>
         <button class="btn waves-effect waves-light" (click)="loadCadeira(nomeCadeira)" type="submit">Ver Informações</button>
@@ -43,7 +43,7 @@
   <hr>
   <br>
   <div class="gradeHorarios" *ngIf="(account != undefined)" align="right">
-    <h2 align="'left">Seus horários:</h2>
+    <h2 align="left">Seus horários:</h2>
     <table class='centered' border="0" cellspacing="0" cellpadding="0" width="570" bordercolor="#000000">
       <tbody>
         <tr>
@@ -61,8 +61,8 @@
           <td *ngIf="h < 10" align="center">0{{h}}:00</td>
           <td *ngIf="h >= 10" align="center">{{h}}:00</td>
           <td *ngFor="let weekday of weekdays" align="center">
-            <div *ngFor="let cad of userCadeiras; let i = index">
-            <div *ngIf="userCadeiras[i].horarios.get(weekday).has(h)" class="horario_selecionado">.</div>
+            <div *ngFor="let cad of userCadeiras">
+              <div *ngIf="cad.horarios.get(weekday).has(h)" class="horario_selecionado">{{cad.nome_disciplina}}</div>
             </div> 
           </td>
         </tr>

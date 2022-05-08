@@ -73,6 +73,7 @@ export class CadeiraService {
                                     },
                                 msg => { alert(msg.message); }
                             );
+        console.log(result.length)
         return result;        
     }
 

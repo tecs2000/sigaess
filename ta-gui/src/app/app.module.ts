@@ -16,6 +16,7 @@ import { ProfComponent } from './prof/prof.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { ProfService } from './prof.service';
 import { LoginService } from './login.service';
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoginService } from './login.service';
     AlunosComponent,
     CadastroComponent,
     CadeirasComponent,
-    CriarCadeiraComponent
+    CriarCadeiraComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +58,10 @@ import { LoginService } from './login.service';
       { 
         path: "criarCadeira",
         component: CriarCadeiraComponent
+      },
+      { 
+        path: "perfil",
+        component: PerfilComponent
       }
     ])
   ],

@@ -7,8 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app'
 import { getFirestore, provideFirestore } from '@angular/fire/firestore'
 import { environment } from 'src/environments/environment';
-import { fbAuth } from './auth/auth'
-import { DbApiCalls } from './auth/firestore'
  
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,7 +19,6 @@ import { CadeiraService} from './cadeiras.service';
 import { CriarCadeiraComponent } from './criar-cadeira/criar-cadeira.component'
 import { ProfComponent } from './prof/prof.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
-import { LoginService } from './login.service';
 import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
@@ -73,7 +70,7 @@ import { PerfilComponent } from './perfil/perfil.component';
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore())
   ],
-  providers: [PessoaService, CadeiraService, LoginService],
+  providers: [PessoaService, CadeiraService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

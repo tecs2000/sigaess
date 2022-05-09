@@ -1,4 +1,3 @@
-import { Aluno } from '../common/aluno';
 import { Pessoa } from '../common/pessoa';
 
 export class CadastroDePessoas {

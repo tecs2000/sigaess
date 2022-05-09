@@ -15,14 +15,15 @@ export class CadastroComponent implements OnInit {
 
   pessoa: Pessoa = new Pessoa();
 
-  criarPessoa(a: Pessoa): void {
+  async criarPessoa(a: Pessoa): Promise<void> {
     var result = this.pessoaService.criar(a);
-    if (result == 'success') {
+    this._route.navigate(['alunos']);
+    /*if (await result === 'success') {
       alert("Cadastro realizado! Faça Login!");
-      this._route.navigate(['perfil']);
+      this._route.navigate(['alunos']);
     } else {
       alert("Informações inválidas");
-    }
+    }*/
   }
 
   ngOnInit(): void {

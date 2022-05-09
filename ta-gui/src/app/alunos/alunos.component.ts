@@ -17,12 +17,13 @@ export class AlunosComponent implements OnInit {
 
   logarAluno(a: Pessoa): void {
     var result = this.pessoaService.login(a.email, a.senha); 
-    if (result == 'success') {
+    this._route.navigate(['cadeiras']);
+    /*if (result == 'success') {
       alert("Login efetuado! Seja bem vindo!");
       this._route.navigate(['cadeiras']);
     } else {
       alert("Falhas nas credenciais, tente novamente");
-    }
+    }*/
 
   }
 

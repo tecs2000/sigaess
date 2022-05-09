@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Pessoa } from '../../../common/pessoa';
-import { User, Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "@angular/fire/auth";
-import { Firestore, doc, setDoc, getDoc} from '@angular/fire/firestore';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "@angular/fire/auth";
+import { Firestore, doc, getDoc, collection, addDoc} from '@angular/fire/firestore';
 
 
 @Injectable({
@@ -13,9 +13,18 @@ export class PessoaService {
   type: string = '';
   account: Pessoa = undefined;
 
-  criar(a: Pessoa) {
-    var result = this.createUser(a.email, a.senha, a)
-    return result
+  async criar(a: Pessoa) {
+    var result: string;
+    await createUserWithEmailAndPassword(this.auth, a.email, a.senha).then(res => {
+        result = 'success';
+        this.post(a);
+      })
+    .catch(err => {
+        console.log('deu erro');
+        result = err.message;
+    });
+    console.log(result);
+    return result;
   }
 
   getType(): string {
@@ -35,20 +44,6 @@ export class PessoaService {
     return pessoa_user
 }
 
-// SIGN UP USER
-createUser (email: string, password: string, pessoa: Pessoa) : string{
-    var result: string;
-    createUserWithEmailAndPassword(this.auth, email, password).then(res => {
-    var uid = this.auth.currentUser.uid;
-    this.post(pessoa);
-    result = 'success';
-    })
-    .catch(err => {
-        result = err.message;
-    });
-    return result;
-}
-
 
 // LOG OUT METHOD
 logout() {
@@ -59,7 +54,10 @@ logout() {
 login(email: string, password: string) : string {
     var result: string;
     signInWithEmailAndPassword(this.auth, email, password).then(res => {
-        result = 'success';
+        var optp = res.operationType;
+        if (optp === 'signIn'){
+          result = 'success';
+        }
     })
     .catch(err => {
         result = err.message;
@@ -69,7 +67,7 @@ login(email: string, password: string) : string {
 
 post (person: Pessoa) {
     var data = this.toFirestore(person)
-    setDoc(doc(this.db,'pessoa',data['uid']),data).then(() => console.log("Data successfully stored"));
+    addDoc(collection(this.db,'pessoa'), data).then(() => console.log("Data successfully stored"));
 }
 
 async get (person)  { 
@@ -86,11 +84,11 @@ async get (person)  {
 
 toFirestore(person: Pessoa): object {
   return {
-    uid: person.uid,
-    name: person.name,
-    email: person.email,
-    role: person.role,
-    horarios: person.horarios
+    'uid': person.uid,
+    'name': person.name,
+    'email': person.email,
+    'role': person.role,
+    'horarios': person.horarios
   };
 }
 

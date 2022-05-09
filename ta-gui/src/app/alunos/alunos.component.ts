@@ -21,7 +21,7 @@ export class AlunosComponent implements OnInit {
     aluno.name = "Aluno"
     aluno.role = "a"
     aluno.email = "ameil@gmail.com"
-    this.loginService.login(aluno, "Aluno");
+    // this.loginService.login(aluno, "Aluno");
     //tela de entrada
     alert("Login efetuado! Seja bem vindo!");
     this._route.navigate(['cadeiras']);

@@ -26,7 +26,7 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
     //this.cadeiras = this.cadeirasService.getCadeirasOfUser(); //uma função que retorna um array de cadeiras contendo
-    this.account = this.loginService.getAccount(); //firebase            //ou que o professor leciona (atributo cadeiras de pessoa?)
+    this.account = this.loginService.getAccount(); //firebase //ou que o professor leciona (atributo cadeiras de pessoa?)
     this.accountType = this.account.role
     this.allCadeiras = this.cadeirasService.getCadeiras(); //isso aqui tá dando ruim
     this.loadUserCadeiras();

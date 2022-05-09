@@ -4,6 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule }   from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app'
+import { getFirestore, provideFirestore } from '@angular/fire/firestore'
+import { environment } from 'src/environments/environment';
+import { fbAuth } from './auth/auth'
+import { DbApiCalls } from './auth/firestore'
+ 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MetasComponent } from './metas/metas.component';
@@ -62,7 +69,9 @@ import { PerfilComponent } from './perfil/perfil.component';
         path: "perfil",
         component: PerfilComponent
       }
-    ])
+    ]),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore())
   ],
   providers: [PessoaService, CadeiraService, LoginService],
   bootstrap: [AppComponent]

@@ -1,15 +1,31 @@
-<html>
+<html lang="en">
+  <h1 class="msg">
+    Siga
+  </h1>
 
-<h1>
-  Teaching Assistant
-</h1>
 
-<nav align="center">
-    <a class="header_link" routerLink="/alunos">Alunos</a>
-    <a class="header_link" routerLink="/professores">Professor</a>
-    <!-- <a class="header_link" routerLink="/metas">Metas</a> -->
-    <!-- <a class="header_link" routerLink="/cadeiras">Cadeiras</a> -->
-</nav>
+    <h3 class="msg">Bem vindo!</h3>
+    
+    <table class="login">
+       <tr>
+          <td><label>CPF </label></td>
+          <td><input [(ngModel)]="pessoa.cpf" ></td>
+       </tr>
+       <tr>
+          <td><label>Senha </label></td>
+          <td><input type="password" [(ngModel)]="pessoa.senha" ></td>
+       </tr>
+       <tr>
+          <td><button class="btlogin" (click)="logar(pessoa)">Fazer Login</button></td>
+       </tr>
+    </table>
+    
+    <nav>
+       <a routerLink="/cadastro">
+          <button class="btcad">Cadastrar</button>
+       </a>
+    </nav>
+    
 
 <router-outlet></router-outlet>
 

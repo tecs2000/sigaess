@@ -48,7 +48,6 @@ export class Pessoa {
     this.email = from.email;
     this.role = from.role;
     this.senha = from.senha;
-    this.horarios = from.cloneHorarios();
   }
 
   clone(): Pessoa {

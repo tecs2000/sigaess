@@ -2,9 +2,7 @@ import express = require('express');
 import bodyParser = require("body-parser");
 
 import {Pessoa} from '../common/pessoa';
-import {CadastroDeAlunos} from './cadastrodealunos';
-import { CadastroDeProfs } from './cadastrodeprofs';
-import { Professor } from '../common/professor';
+import {CadastroDePessoas} from './cadastrodepessoa';
 import { CadastroDeCadeiras } from './cadastrodecadeiras';
 import { Cadeira, CadeiraPackage } from '../common/cadeiras';
 
@@ -23,10 +21,10 @@ taserver.use(express.json());
 
 // Requisições de aluno
 
-var alunos: CadastroDeAlunos = new CadastroDeAlunos();
+var alunos: CadastroDePessoas = new CadastroDePessoas();
 
 taserver.get('/alunos', function (req, res) {
-  var aluno: string = JSON.stringify(alunos.getAlunos());
+  var aluno: string = JSON.stringify(alunos.getPessoas());
   res.send(aluno);
 })
 
@@ -52,16 +50,14 @@ taserver.put('/aluno', function (req: express.Request, res: express.Response) {
 
 // Requisições de Professor
 
-var profs: CadastroDeProfs = new CadastroDeProfs();
-
 taserver.get('/professores', function (req, res) {
-  var professor: string = JSON.stringify(profs.getprofessors());
+  var professor: string = JSON.stringify(alunos.getPessoas());
   res.send(professor);
 })
 
 taserver.post('/professor', function (req: express.Request, res: express.Response) {
-  var professor: Professor = <Professor> req.body; //verificar se é mesmo professor!
-  professor = profs.criar(professor);
+  var professor: Pessoa = <Pessoa> req.body; //verificar se é mesmo professor!
+  professor = alunos.criar(professor);
   if (professor) {
     res.send({"success": "O professor foi cadastrado com sucesso"});
   } else {
@@ -70,8 +66,8 @@ taserver.post('/professor', function (req: express.Request, res: express.Respons
 })
 
 taserver.put('/professor', function (req: express.Request, res: express.Response) {
-  var professor: Professor = <Professor> req.body;
-  professor = profs.atualizar(professor);
+  var professor: Pessoa = <Pessoa> req.body;
+  professor = alunos.atualizar(professor);
   if (professor) {
     res.send({"success": "O professor foi atualizado com sucesso"});
   } else {

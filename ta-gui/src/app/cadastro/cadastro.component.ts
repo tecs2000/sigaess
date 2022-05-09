@@ -16,13 +16,19 @@ export class CadastroComponent implements OnInit {
   pessoa: Pessoa = new Pessoa();
 
   criarPessoa(a: Pessoa): void {
-    if (this.pessoaService.criar(a)) {
-      this.pessoa = new Pessoa();
-      alert("Cadastro realizado. Faça Login.")
-      this._route.navigate(['professores']);
-    } else {
-      alert("Esse CPF já foi cadastrado. Tente Novamente")
-    }
+    this.pessoaService.criar(a)
+              .subscribe(
+                ar => {
+                  if (ar) {
+                    this.pessoa = new Pessoa();
+                    alert("Cadastro realizado. Faça Login.")
+                    this._route.navigate(['professores']);
+                  } else {
+                    alert("Esse CPF já foi cadastrado. Tente Novamente")
+                  } 
+                },
+                msg => { alert(msg.message); }
+              );
   }
 
   ngOnInit(): void {

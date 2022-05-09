@@ -14,7 +14,6 @@ import { CadeiraService} from './cadeiras.service';
 import { CriarCadeiraComponent } from './criar-cadeira/criar-cadeira.component'
 import { ProfComponent } from './prof/prof.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
-import { ProfService } from './prof.service';
 import { LoginService } from './login.service';
 import { PerfilComponent } from './perfil/perfil.component';
 
@@ -65,7 +64,7 @@ import { PerfilComponent } from './perfil/perfil.component';
       }
     ])
   ],
-  providers: [PessoaService, ProfService, CadeiraService, LoginService],
+  providers: [PessoaService, CadeiraService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

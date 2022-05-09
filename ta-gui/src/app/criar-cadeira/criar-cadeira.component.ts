@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Cadeira } from '../../../../common/cadeiras';
 import { CadeiraService } from '../cadeiras.service';
 import { LoginService } from '../login.service';
-import { Professor } from '../../../../common/professor';
 import { Pessoa } from '../../../../common/pessoa';
 
 @Component({

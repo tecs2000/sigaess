@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Aluno } from '../../../common/aluno';
-
-import { Professor } from '../../../common/professor';
+import { Pessoa } from '../../../common/pessoa';
 
 @Injectable()
 export class LoginService {
   type: string = '';
-  account: Professor | Aluno | null = null;
+  account: Pessoa = undefined;
 
-  login(account: Professor | Aluno, type: string) {
+  login(account: Pessoa, type: string) {
     this.account = account;
     this.type = type;
   }
@@ -17,7 +15,7 @@ export class LoginService {
     return this.type;
   }
 
-  getAccount(): Professor | Aluno | null {
+  getAccount(): Pessoa | null {
     return this.account;
   }
 }

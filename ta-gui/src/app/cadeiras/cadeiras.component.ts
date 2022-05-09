@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
-import { Aluno } from '../../../../common/aluno';
 
 import { Cadeira } from '../../../../common/cadeiras';
 import { CadeiraService } from '../cadeiras.service';
 import { LoginService } from '../login.service';
-import { Professor } from '../../../../common/professor';
+import { Pessoa } from '../../../../common/pessoa';
 
 @Component({  
   selector: 'cadeiras',
@@ -16,7 +15,7 @@ export class CadeirasComponent implements OnInit {
   constructor(private cadeirasService: CadeiraService, private loginService: LoginService) {}
   
   accountType: string;
-  account: Aluno | Professor = undefined;
+  account: Pessoa = undefined;
   cadeiras: Cadeira[];
   departamentos: string[];
 
@@ -62,22 +61,22 @@ export class CadeirasComponent implements OnInit {
     return typeof a;
   }
 
-  checkIfAluno(account: Aluno | Professor): boolean {
-    if (account instanceof Aluno) {
+  checkIfAluno(account: Pessoa): boolean {
+    if (account.role === "a") {
       return true;
     }
     return false;
   }
 
-  checkIfProf(account: Aluno | Professor): boolean {
-    if (account instanceof Professor) {
+  checkIfProf(account: Pessoa): boolean {
+    if (account.role === "p") {
       return true;
     }
     return false;
   }
 
-  matricula(cadeira: Cadeira, aluno: Aluno | Professor) {
-    if (aluno instanceof Aluno) {
+  matricula(cadeira: Cadeira, aluno: Pessoa) {
+    if (aluno.role === "a") {
       this.cadeirasService.addAluno(cadeira, aluno).subscribe(
         ar => {
           

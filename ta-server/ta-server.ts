@@ -1,7 +1,7 @@
 import express = require('express');
 import bodyParser = require("body-parser");
 
-import {Aluno} from '../common/aluno';
+import {Pessoa} from '../common/pessoa';
 import {CadastroDeAlunos} from './cadastrodealunos';
 import { CadastroDeProfs } from './cadastrodeprofs';
 import { Professor } from '../common/professor';
@@ -31,7 +31,7 @@ taserver.get('/alunos', function (req, res) {
 })
 
 taserver.post('/aluno', function (req: express.Request, res: express.Response) {
-  var aluno: Aluno = <Aluno> req.body; //verificar se é mesmo Aluno!
+  var aluno: Pessoa = <Pessoa> req.body; //verificar se é mesmo Aluno!
   aluno = alunos.criar(aluno);
   if (aluno) {
     res.send({"success": "O aluno foi cadastrado com sucesso"});
@@ -41,7 +41,7 @@ taserver.post('/aluno', function (req: express.Request, res: express.Response) {
 })
 
 taserver.put('/aluno', function (req: express.Request, res: express.Response) {
-  var aluno: Aluno = <Aluno> req.body;
+  var aluno: Pessoa = <Pessoa> req.body;
   aluno = alunos.atualizar(aluno);
   if (aluno) {
     res.send({"success": "O aluno foi atualizado com sucesso"});
@@ -120,7 +120,7 @@ taserver.put('/cadeira', function (req: express.Request, res: express.Response) 
 taserver.put('/cadeiraAddAluno', function (req: express.Request, res: express.Response) {
   console.log("I receave a /cadeiraAddAluno put")
   var cadeiraPackage: CadeiraPackage = <CadeiraPackage> req.body.cadeira;
-  var aluno: Aluno = <Aluno> req.body.aluno;
+  var aluno: Pessoa = <Pessoa> req.body.aluno;
   var cadeira = new Cadeira();
   cadeira.copyFromDataPackage(cadeiraPackage);
   var result = cadeiras.addAluno(cadeira, aluno);

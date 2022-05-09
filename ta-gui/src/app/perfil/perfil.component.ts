@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
-import { Professor } from '../../../../common/professor';
-import { Aluno } from '../../../../common/aluno';
+
 import { Cadeira } from '../../../../common/cadeiras';
 import { CadeiraService } from '../cadeiras.service';
 import { LoginService } from '../login.service';
@@ -17,7 +16,7 @@ export class PerfilComponent implements OnInit {
   constructor(private cadeirasService: CadeiraService, private loginService: LoginService) {}
   
   accountType: string;
-  account: Professor | Aluno = undefined; //Pessoa = undefined;
+  account: Pessoa = undefined; //Pessoa = undefined;
   allCadeiras: Cadeira[];
   userCadeiras: Cadeira[];
   weekdays: string[] = ["seg", "ter", "qua", "qui", "sex", "sab"];

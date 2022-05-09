@@ -3,14 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, map } from 'rxjs/operators';
 
-import { Aluno } from '..//../../common/aluno';
 import { Cadeira, CadeiraPackage } from "../../../common/cadeiras";
+import { Pessoa } from '../../../common/pessoa';
 
 export class CadeiraAluno {
     cadeira: CadeiraPackage;
-    aluno = new Aluno();
+    aluno = new Pessoa();
 
-    constructor(cadeira: Cadeira, aluno: Aluno) {
+    constructor(cadeira: Cadeira, aluno: Pessoa) {
         this.cadeira = new CadeiraPackage(cadeira);
         this.aluno = aluno;
     }
@@ -84,7 +84,7 @@ export class CadeiraService {
             )
     }
 
-    addAluno(cadeira: Cadeira, aluno: Aluno): Observable<Cadeira> {
+    addAluno(cadeira: Cadeira, aluno: Pessoa): Observable<Cadeira> {
         var cadeiraAluno = new CadeiraAluno(cadeira, aluno)
         return this.http.put<any>(this.taURL + "/cadeiraAddAluno", JSON.stringify(cadeiraAluno), {headers: this.headers})
                 .pipe(

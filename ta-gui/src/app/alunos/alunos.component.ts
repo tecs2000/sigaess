@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Aluno } from '../../../../common/aluno';
-import { AlunoService } from '../aluno.service';
+import { PessoaService } from '../pessoa.service';
 import { LoginService } from '../login.service';
+import { Pessoa } from '../../../../common/pessoa';
 
 @Component({  
   selector: 'app-root',
@@ -11,14 +11,16 @@ import { LoginService } from '../login.service';
   styleUrls: ['./alunos.component.css']
 })
 export class AlunosComponent implements OnInit {
-  constructor(private _route: Router, private alunoService: AlunoService, private loginService: LoginService) {}
+  constructor(private _route: Router, private alunoService: PessoaService, private loginService: LoginService) {}
 
-  aluno: Aluno = new Aluno();
+  aluno: Pessoa = new Pessoa();
   cpfduplicado: boolean = false;
 
-  logarAluno(a: Aluno): void {
-    var aluno = new Aluno();
-    aluno.nome = "Aluno"
+  logarAluno(a: Pessoa): void {
+    var aluno = new Pessoa();
+    aluno.name = "Aluno"
+    aluno.role = "a"
+    aluno.email = "ameil@gmail.com"
     this.loginService.login(aluno, "Aluno");
     //tela de entrada
     alert("Login efetuado! Seja bem vindo!");

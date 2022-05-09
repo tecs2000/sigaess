@@ -1,37 +1,38 @@
 import { Aluno } from '../common/aluno';
+import { Pessoa } from '../common/pessoa';
 
 export class CadastroDeAlunos {
-    alunos: Aluno[] = [];
+    alunos: Pessoa[] = [];
 
-    criar(aluno: Aluno): Aluno {
+    criar(aluno: Pessoa): Pessoa {
       var result = null;
-      if (this.cpfNaoCadastrado(aluno.cpf)) {
-        result = new Aluno();
+      if (this.cpfNaoCadastrado(aluno.email)) {
+        result = new Pessoa();
         result.copyFrom(aluno);
         this.alunos.push(result);
       }
       return result;
     }
 
-    cpfNaoCadastrado(cpf: string): boolean {
-      return !this.alunos.find(a => a.cpf == cpf);
+    cpfNaoCadastrado(email: string): boolean {
+      return !this.alunos.find(a => a.email == email);
     }
 
-    atualizar(aluno: Aluno): Aluno {
-      var result: Aluno = this.alunos.find(a => a.cpf == aluno.cpf);
+    atualizar(aluno: Pessoa): Pessoa {
+      var result: Pessoa = this.alunos.find(a => a.email == aluno.email);
       if (result) result.copyFrom(aluno);
       return result;
     }
 
-    getAlunos(): Aluno[] {
+    getAlunos(): Pessoa[] {
       return this.alunos;
     }
 
-    checksenha(cpf: string, senha: string): boolean {
-      return !this.alunos.find(a => a.cpf == cpf && a.senha == senha);
+    checksenha(email: string, senha: string): boolean {
+      return !this.alunos.find(a => a.email == email && a.senha == senha);
     }
 
-    getAlunoCPFPass(cpf: string, senha: string): Aluno {
-      return this.alunos.find(a => a.cpf == cpf && a.senha == senha);
+    getAlunoCPFPass(email: string, senha: string): Pessoa {
+      return this.alunos.find(a => a.email == email && a.senha == senha);
     }
 } 

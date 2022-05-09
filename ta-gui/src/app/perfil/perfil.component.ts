@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { Cadeira } from '../../../../common/cadeiras';
 import { CadeiraService } from '../cadeiras.service';
-import { LoginService } from '../login.service';
 import { Pessoa } from '../../../../common/pessoa';
 
 @Component({

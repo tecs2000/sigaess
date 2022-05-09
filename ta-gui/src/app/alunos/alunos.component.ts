@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { PessoaService } from '../pessoa.service';
 import { Pessoa } from '../../../../common/pessoa';
-import { fbAuth } from '../auth/auth'
+
 
 @Component({  
   selector: 'app-root',

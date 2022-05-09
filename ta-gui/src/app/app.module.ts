@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule }   from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
-import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app'
+import { provideAuth, getAuth } from '@angular/fire/auth'
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app'
 import { getFirestore, provideFirestore } from '@angular/fire/firestore'
 import { environment } from 'src/environments/environment';
  
@@ -40,6 +40,7 @@ import { PerfilComponent } from './perfil/perfil.component';
     HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
     RouterModule.forRoot([
       {
         path: 'professores',
@@ -74,10 +75,8 @@ import { PerfilComponent } from './perfil/perfil.component';
         component: AppComponent
       }
     ]),
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideFirestore(() => getFirestore())
   ],
-  providers: [PessoaService, CadeiraService],
+  providers: [ PessoaService, CadeiraService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -21,6 +21,7 @@ import { ProfComponent } from './prof/prof.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { PerfilComponent } from './perfil/perfil.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore()),
     RouterModule.forRoot([
       {
         path: 'professores',
@@ -65,6 +68,10 @@ import { PerfilComponent } from './perfil/perfil.component';
       { 
         path: "perfil",
         component: PerfilComponent
+      },
+      { 
+        path: "login",
+        component: AppComponent
       }
     ]),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),

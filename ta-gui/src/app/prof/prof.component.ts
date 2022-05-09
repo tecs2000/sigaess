@@ -21,7 +21,7 @@ export class ProfComponent implements OnInit {
     prof.name = "Professor"
     prof.role = "p"
     prof.email = "pmeil@gmail.com"
-    this.loginService.login(prof , "Professor");
+    //this.loginService.login(prof , "Professor");
     //tela de entrada
     alert("Login efetuado! Seja bem vindo!");
     this._route.navigate(['cadeiras']);

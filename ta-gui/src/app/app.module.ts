@@ -37,7 +37,6 @@ import { PerfilComponent } from './perfil/perfil.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    Auth,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
     RouterModule.forRoot([

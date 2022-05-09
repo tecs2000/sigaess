@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Pessoa } from '../../../common/pessoa';
-import { LoginService } from './login.service';
+import { fbAuth } from './auth/auth'
 
 @Component({
   selector: 'app-root',
@@ -11,15 +11,18 @@ import { LoginService } from './login.service';
 })
 
 export class AppComponent {
-  constructor(private _route: Router, private loginService: LoginService) {}
+  constructor(private _route: Router, private autorizador: fbAuth) {}
 
   pessoa: Pessoa = new Pessoa();
 
   logar(a: Pessoa) {
-    //this.loginService.login(pessoa); firebase
-    //tela de entrada
-    alert("Login efetuado! Seja bem vindo!");
-    this._route.navigate(['cadeiras']);
+    var result = this.autorizador.login(a.email, a.senha); 
+    if (result == 'success') {
+      alert("Login efetuado! Seja bem vindo!");
+      this._route.navigate(['cadeiras']);
+    } else {
+      alert("Falhas nas credenciais, tente novamente");
+    }
   }
 
 }

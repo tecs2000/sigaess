@@ -4,6 +4,7 @@ import { Cadeira } from '../../../../common/cadeiras';
 import { CadeiraService } from '../cadeiras.service';
 import { LoginService } from '../login.service';
 import { Professor } from '../../../../common/professor';
+import { Pessoa } from '../../../../common/pessoa';
 
 @Component({
   selector: 'app-criar-cadeira',
@@ -14,7 +15,7 @@ export class CriarCadeiraComponent implements OnInit {
   constructor(private _route: Router, private cadeirasService: CadeiraService, 
     private loginService: LoginService) { }
 
-  professor: Professor;
+  professor: Pessoa;
   cadeira: Cadeira = new Cadeira();
   departamentos: string[] = [];
   horario: number;
@@ -74,7 +75,7 @@ export class CriarCadeiraComponent implements OnInit {
     if (!this.professor || this.loginService.getType() == "Aluno") {
       this._route.navigate(['professores']);
     }
-    this.cadeira.nome_professor = this.professor.nome;
+    this.cadeira.nome_professor = this.professor.name;
   }
 
 }

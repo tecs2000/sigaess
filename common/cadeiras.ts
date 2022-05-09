@@ -1,4 +1,4 @@
-import { Aluno } from "./aluno";
+import { Pessoa } from "./pessoa";
 
 export class Cadeira {
   nome_disciplina: string;
@@ -74,10 +74,10 @@ export class Cadeira {
     }
   }
 
-  addAluno(aluno: Aluno): boolean {
+  addAluno(aluno: Pessoa): boolean {
     var result: boolean = false;
     if (this.alunos.size < Number(this.numero_vagas)) {
-      this.alunos.add(aluno.nome);
+      this.alunos.add(aluno.email);
       result = true;
     }
     return result;

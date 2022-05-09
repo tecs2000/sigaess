@@ -1,10 +1,8 @@
 import express = require('express');
 import bodyParser = require("body-parser");
 
-import {Aluno} from '../common/aluno';
-import {CadastroDeAlunos} from './cadastrodealunos';
-import { CadastroDeProfs } from './cadastrodeprofs';
-import { Professor } from '../common/professor';
+import {Pessoa} from '../common/pessoa';
+import {CadastroDePessoas} from './cadastrodepessoa';
 import { CadastroDeCadeiras } from './cadastrodecadeiras';
 import { Cadeira, CadeiraPackage } from '../common/cadeiras';
 
@@ -23,15 +21,15 @@ taserver.use(express.json());
 
 // Requisições de aluno
 
-var alunos: CadastroDeAlunos = new CadastroDeAlunos();
+var alunos: CadastroDePessoas = new CadastroDePessoas();
 
 taserver.get('/alunos', function (req, res) {
-  var aluno: string = JSON.stringify(alunos.getAlunos());
+  var aluno: string = JSON.stringify(alunos.getPessoas());
   res.send(aluno);
 })
 
 taserver.post('/aluno', function (req: express.Request, res: express.Response) {
-  var aluno: Aluno = <Aluno> req.body; //verificar se é mesmo Aluno!
+  var aluno: Pessoa = <Pessoa> req.body; //verificar se é mesmo Aluno!
   aluno = alunos.criar(aluno);
   if (aluno) {
     res.send({"success": "O aluno foi cadastrado com sucesso"});
@@ -41,7 +39,7 @@ taserver.post('/aluno', function (req: express.Request, res: express.Response) {
 })
 
 taserver.put('/aluno', function (req: express.Request, res: express.Response) {
-  var aluno: Aluno = <Aluno> req.body;
+  var aluno: Pessoa = <Pessoa> req.body;
   aluno = alunos.atualizar(aluno);
   if (aluno) {
     res.send({"success": "O aluno foi atualizado com sucesso"});
@@ -52,16 +50,14 @@ taserver.put('/aluno', function (req: express.Request, res: express.Response) {
 
 // Requisições de Professor
 
-var profs: CadastroDeProfs = new CadastroDeProfs();
-
 taserver.get('/professores', function (req, res) {
-  var professor: string = JSON.stringify(profs.getprofessors());
+  var professor: string = JSON.stringify(alunos.getPessoas());
   res.send(professor);
 })
 
 taserver.post('/professor', function (req: express.Request, res: express.Response) {
-  var professor: Professor = <Professor> req.body; //verificar se é mesmo professor!
-  professor = profs.criar(professor);
+  var professor: Pessoa = <Pessoa> req.body; //verificar se é mesmo professor!
+  professor = alunos.criar(professor);
   if (professor) {
     res.send({"success": "O professor foi cadastrado com sucesso"});
   } else {
@@ -70,8 +66,8 @@ taserver.post('/professor', function (req: express.Request, res: express.Respons
 })
 
 taserver.put('/professor', function (req: express.Request, res: express.Response) {
-  var professor: Professor = <Professor> req.body;
-  professor = profs.atualizar(professor);
+  var professor: Pessoa = <Pessoa> req.body;
+  professor = alunos.atualizar(professor);
   if (professor) {
     res.send({"success": "O professor foi atualizado com sucesso"});
   } else {
@@ -120,7 +116,7 @@ taserver.put('/cadeira', function (req: express.Request, res: express.Response) 
 taserver.put('/cadeiraAddAluno', function (req: express.Request, res: express.Response) {
   console.log("I receave a /cadeiraAddAluno put")
   var cadeiraPackage: CadeiraPackage = <CadeiraPackage> req.body.cadeira;
-  var aluno: Aluno = <Aluno> req.body.aluno;
+  var aluno: Pessoa = <Pessoa> req.body.aluno;
   var cadeira = new Cadeira();
   cadeira.copyFromDataPackage(cadeiraPackage);
   var result = cadeiras.addAluno(cadeira, aluno);

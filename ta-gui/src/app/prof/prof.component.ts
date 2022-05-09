@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { Professor } from '../../../../common/professor';
-import { ProfService } from '../prof.service';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
+import { Pessoa } from '../../../../common/pessoa';
 
 @Component({
   selector: 'professores',
@@ -12,14 +11,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./prof.component.css']
 })
 export class ProfComponent implements OnInit {
-   constructor(private _route: Router, private profService: ProfService, private loginService: LoginService) {}
+   constructor(private _route: Router, private loginService: LoginService) {}
 
-   prof: Professor = new Professor();
+   prof: Pessoa = new Pessoa();
    cpfduplicado: boolean = false;
 
-  logarProf(a: Professor): void {
-    var prof = new Professor()
-    prof.nome = "Professor"
+  logarProf(a: Pessoa): void {
+    var prof = new Pessoa()
+    prof.name = "Professor"
+    prof.role = "p"
+    prof.email = "pmeil@gmail.com"
     this.loginService.login(prof , "Professor");
     //tela de entrada
     alert("Login efetuado! Seja bem vindo!");

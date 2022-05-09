@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { Aluno } from '../../../../common/aluno';
-import { AlunoService } from '../aluno.service';
+import { PessoaService } from '../pessoa.service';
 
 @Component({
   selector: 'metas',
@@ -10,14 +9,7 @@ import { AlunoService } from '../aluno.service';
   styleUrls: ['./metas.component.css']
 })
 export class MetasComponent implements OnInit {
-  constructor(private alunoService: AlunoService) {}
-
-  alunos: Aluno[];
-
-  atualizarAluno(aluno: Aluno): void {
-    this.alunoService.atualizar(aluno);
-  }
-
+  constructor(private alunoService: PessoaService) {}
   ngOnInit(): void {
     // this.alunos = this.alunoService.getAlunos();
   }

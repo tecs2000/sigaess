@@ -8,7 +8,7 @@
       <title>Integrated System</title>
   </head>
 <body class="all">
-  <h2 *ngIf="account != undefined">Bem vindo {{account.nome}}!</h2>
+  <h2 *ngIf="account != undefined">Bem vindo {{account.name}}!</h2>
   <div align="center">
     <table>
       <td *ngIf="checkIfProf(account)"><a routerLink="/criarCadeira"><button>Adicionar Nova Cadeira</button></a></td>

@@ -1,4 +1,4 @@
-import { Aluno } from '../common/aluno';
+import { Pessoa } from '../common/pessoa';
 import { Cadeira, CadeiraPackage } from '../common/cadeiras';
 
 export class CadastroDeCadeiras {
@@ -140,7 +140,7 @@ export class CadastroDeCadeiras {
         return result;
     }
 
-    addAluno(cadeira: Cadeira, aluno: Aluno): boolean {
+    addAluno(cadeira: Cadeira, aluno: Pessoa): boolean {
         cadeira = cadeira.clone();
         var result = false;
         for (let c of this.cadeiras) {

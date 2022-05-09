@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MetasComponent } from './metas/metas.component';
 import { AlunosComponent } from './alunos/alunos.component';
-import { AlunoService } from './aluno.service';
+import { PessoaService } from './pessoa.service';
 import { CadeirasComponent } from './cadeiras/cadeiras.component';
 import { CadeiraService} from './cadeiras.service';
 import { CriarCadeiraComponent } from './criar-cadeira/criar-cadeira.component'
@@ -70,7 +70,7 @@ import { PerfilComponent } from './perfil/perfil.component';
       }
     ])
   ],
-  providers: [AlunoService, ProfService, CadeiraService, LoginService],
+  providers: [PessoaService, ProfService, CadeiraService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

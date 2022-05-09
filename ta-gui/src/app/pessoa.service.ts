@@ -3,16 +3,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, map } from 'rxjs/operators';
 
-import { Aluno } from '../../../common/aluno';
+import { Pessoa } from '../../../common/pessoa';
 
 @Injectable()
-export class AlunoService {
+export class PessoaService {
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
   private taURL = 'http://localhost:3000';
   
   constructor(private http: HttpClient) {}
 
-  criar(aluno: Aluno): Observable<Aluno> {
+  criar(aluno: Pessoa): Observable<Pessoa> {
     return this.http.post<any>(this.taURL + "/aluno", aluno, {headers: this.headers})
       .pipe( 
         retry(2),
@@ -20,7 +20,7 @@ export class AlunoService {
       ); 
   }
 
-  atualizar(aluno: Aluno): Observable<Aluno> {
+  atualizar(aluno: Pessoa): Observable<Pessoa> {
     return this.http.put<any>(this.taURL + "/aluno", JSON.stringify(aluno), {headers: this.headers})
       .pipe( 
         retry(2),
@@ -28,8 +28,8 @@ export class AlunoService {
       ); 
   }
 
-  getAlunos(): Observable<Aluno[]> {
-    return this.http.get<Aluno[]>(this.taURL + "/alunos")
+  getAlunos(): Observable<Pessoa[]> {
+    return this.http.get<Pessoa[]>(this.taURL + "/alunos")
       .pipe(
           retry(2)
       );

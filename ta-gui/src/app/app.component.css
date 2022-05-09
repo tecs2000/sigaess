@@ -16,3 +16,8 @@
 .texto{
   text-align: center;
 }
+
+.top-header {
+  display: flex;
+  justify-content: space-around;
+}

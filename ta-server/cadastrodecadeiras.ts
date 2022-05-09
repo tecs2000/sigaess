@@ -58,10 +58,10 @@ export class CadastroDeCadeiras {
 
     validHorarios(novaCadeira: Cadeira): boolean {
         for (let cadeira of this.cadeiras){
-            if (cadeira.nome_professor == novaCadeira.nome_professor){
+            if (cadeira.nome_professor === novaCadeira.nome_professor){
             for (var key in cadeira.horarios){ 
-                var alocacaoAtual = cadeira.horarios[key];
-                var novaAlocacao = novaCadeira.horarios[key];
+                var alocacaoAtual = cadeira.horarios.get(key);
+                var novaAlocacao = novaCadeira.horarios.get(key);
                 if (equal(alocacaoAtual, novaAlocacao) || interseccao(alocacaoAtual, novaAlocacao)) {
                 return false;
                 }
